@@ -1,0 +1,1370 @@
+You are building a complete frontend website for my Web Technology college assignment.
+
+PROJECT NAME:
+MeraDhobi
+
+PROJECT TYPE:
+Laundry cleaning / laundry pickup and delivery service website.
+
+TECH STACK — STRICT:
+- HTML5
+- CSS3
+- Vanilla JavaScript
+- You may use popular frontend libraries through CDN when genuinely useful.
+- Three.js is allowed and encouraged for the 3D hero section.
+- You may use Lucide Icons or another lightweight icon library through CDN.
+- Do NOT use React.
+- Do NOT use Vue.
+- Do NOT use Angular.
+- Do NOT use Tailwind.
+- Do NOT use Bootstrap as the primary styling system.
+- Do NOT introduce a backend.
+- Do NOT introduce Node.js requirements.
+- The website must work by simply opening/live-serving index.html.
+
+The evaluator may inspect the source code, so write clean, understandable, conventional HTML/CSS/JavaScript.
+
+==================================================
+1. CORE DESIGN DIRECTION
+==================================================
+
+The website should feel like a premium, modern laundry-care brand rather than a generic college project.
+
+Brand:
+MeraDhobi
+
+Visual personality:
+- clean
+- premium
+- calm
+- modern
+- trustworthy
+- slightly playful
+- technology-enabled
+- laundry/fabric inspired
+- spacious
+- editorial rather than dashboard-like
+
+IMPORTANT:
+Do NOT make the website look like a generic AI-generated SaaS website.
+
+Avoid:
+- excessive gradients
+- neon colors
+- excessive glassmorphism
+- giant rounded cards everywhere
+- random blobs
+- excessive floating animations
+- unnecessary statistics
+- endless dashboard cards
+- excessive shadows
+- overly bright colors
+- yellow as the dominant color
+- purple/pink AI aesthetics
+- visual clutter
+- repeated "Book Now" buttons in every section
+
+The design must remain elegant and restrained.
+
+==================================================
+2. COLOR PALETTE — LOCK THIS
+==================================================
+
+Use a cool laundry-inspired palette.
+
+Primary background:
+#F5FAFC
+
+Secondary pale blue:
+#E4F1F5
+
+Soft blue:
+#C8E2E9
+
+Medium accent:
+#78B8C8
+
+Deep navy:
+#123243
+
+Darkest text:
+#0B202B
+
+Secondary text:
+#58717C
+
+White:
+#FFFFFF
+
+Optional very subtle mint accent:
+#B9DDD5
+
+IMPORTANT:
+Do NOT introduce a completely different color palette later.
+
+Do NOT use yellow/orange as a primary brand color.
+
+The overall website should visually resemble clean white fabric against a pale blue environment with deep navy typography.
+
+Small accent colors may be used for individual roadmap stages and status indicators, but they must remain muted and harmonious.
+
+==================================================
+3. VISUAL REFERENCE DESCRIPTION
+==================================================
+
+I have two visual references.
+
+REFERENCE 1:
+A laundry-service website currently available online uses a slightly yellow/warm visual palette and presents laundry services in a conventional commercial style.
+
+Do NOT copy its design.
+
+MeraDhobi should deliberately feel different through:
+- cool blue palette
+- large typography
+- whitespace
+- editorial layouts
+- interactive storytelling
+- 3D laundry/fabric visual
+- smooth scroll
+- subtle parallax
+- dynamic cards
+- modern motion
+
+REFERENCE 2:
+The desired visual direction resembles a premium mobile laundry-care concept.
+
+Imagine a large pale blue background.
+
+On one side is a realistic white long-sleeve dress shirt floating in space.
+
+On the other side / surrounding content are clean white cards showing folded laundry/clothing items.
+
+There is also a simplified map/route visual representing laundry pickup and delivery.
+
+The mobile reference has a heading similar in concept to:
+
+"Innovating the Way You Care for Your Clothes"
+
+The exact layout should NOT simply be copied. Adapt the visual language into a full desktop website.
+
+The final website should look intentionally designed for desktop first while remaining responsive on mobile.
+
+==================================================
+4. HERO SECTION — MOST IMPORTANT SECTION
+==================================================
+
+The landing page MUST begin with a visually impressive hero section.
+
+Hero concept:
+
+A realistic white long-sleeve button-down dress shirt floats in the center/right portion of the screen.
+
+Behind/around it is the headline:
+
+"INNOVATING THE WAY
+YOU CARE FOR YOUR
+CLOTHES."
+
+Use typography hierarchy rather than making every word huge.
+
+Suggested supporting text:
+
+"Professional laundry care, pickup and delivery — made effortless."
+
+Primary CTA:
+"Schedule a Pickup"
+
+Secondary CTA:
+"Explore Services"
+
+Do not overload the hero with text.
+
+The shirt should be the visual focal point.
+
+==================================================
+5. 3D SHIRT REQUIREMENTS
+==================================================
+
+The hero needs a REAL 3D-looking interactive shirt, not simply a flat rectangular image.
+
+Use Three.js through CDN if appropriate.
+
+The shirt should resemble:
+
+A realistic 3D model of a white long-sleeve dress shirt.
+
+Physical characteristics:
+- white fabric
+- long sleeves
+- button-down front
+- clean collar
+- small buttons
+- visible cuffs
+- natural shirt proportions
+- realistic fabric folds
+- slightly loose fabric
+- no person wearing it
+- floating in space
+- clean studio appearance
+
+The shirt should approximately match the reference silhouette:
+- collar near the top
+- shoulders slightly broad
+- torso narrowing naturally toward the bottom
+- full sleeves extending outward
+- cuffs visible
+- natural folds around chest, sleeves and waist
+
+IMPORTANT:
+Do not use a cartoon shirt.
+Do not use a T-shirt.
+Do not use a mannequin wearing the shirt.
+Do not use a flat CSS shirt.
+
+The shirt needs subtle cloth-like movement.
+
+==================================================
+6. 3D CLOTH MOTION
+==================================================
+
+The shirt should have subtle continuous movement resembling fabric responding to a gentle breeze.
+
+Possible implementation:
+
+Option A:
+Use a GLB/GLTF shirt model and animate its vertices with a subtle wave/deformation.
+
+Option B:
+Use a procedural Three.js mesh with displacement.
+
+Option C:
+Use a suitable lightweight cloth/wave deformation technique.
+
+True physically accurate cloth simulation is NOT necessary.
+
+The visual result is what matters.
+
+Movement should be:
+- extremely subtle
+- slow
+- elegant
+- organic
+- never distracting
+
+The sleeves and lower part of the shirt can move slightly more than the collar.
+
+The shirt should also respond subtly to mouse movement:
+- slight rotation
+- slight parallax
+- very small movement
+
+Do NOT make the shirt spin continuously like a product viewer.
+
+It should feel like it is floating.
+
+If using a GLB/GLTF model, keep the implementation simple and document where the model is loaded from.
+
+If an external 3D asset is used, use a legally usable/free asset and clearly place the source/license information in a code comment or README.
+
+If the external 3D asset cannot load, implement a graceful fallback rather than leaving a blank hero.
+
+==================================================
+7. HERO SCROLL TRANSITION
+==================================================
+
+The hero should not simply disappear when scrolling.
+
+As the user scrolls:
+
+1. Shirt moves slightly upward/backward.
+2. Hero heading gradually fades/moves.
+3. The next section enters smoothly.
+4. A subtle parallax effect should make the website feel layered.
+5. No excessive scroll-jacking.
+
+Use normal browser scrolling.
+
+Do NOT hijack scrolling.
+
+Use CSS transforms and requestAnimationFrame/intersection observers where appropriate.
+
+==================================================
+8. LANDING PAGE STORYTELLING
+==================================================
+
+The landing page should unfold like a story.
+
+Recommended sequence:
+
+SECTION 1:
+Hero
+- 3D floating shirt
+- "Innovating the Way You Care for Your Clothes"
+- Schedule Pickup CTA
+
+SECTION 2:
+Problem / emotional hook
+
+Example:
+
+"Your clothes work hard.
+They deserve better than a rushed wash."
+
+Briefly explain common problems:
+- inconsistent cleaning
+- stains
+- delicate fabrics
+- forgotten laundry
+- time spent visiting laundries
+
+Keep this section short.
+
+SECTION 3:
+MeraDhobi solution
+
+Headline:
+
+"From hamper to hanger."
+
+Show the journey visually.
+
+SECTION 4:
+Services
+
+Examples:
+- Wash & Fold
+- Dry Cleaning
+- Ironing
+- Stain Removal
+- Delicate Care
+- Express Laundry
+
+SECTION 5:
+How it works
+
+Use a dynamic roadmap/timeline.
+
+SECTION 6:
+Care by fabric
+
+Interactive cards for:
+- Cotton
+- Silk
+- Wool
+- Denim
+- Formal Wear
+- Delicates
+
+SECTION 7:
+Pickup / delivery section
+
+Use a clean route/map-inspired visual.
+
+SECTION 8:
+Trust / quality section
+
+Examples:
+- Fabric-first cleaning
+- Careful sorting
+- Professional finishing
+- Doorstep pickup
+- Transparent pricing
+
+Do NOT invent fake numerical claims such as:
+"99.9% stain removal"
+"50,000 happy customers"
+"10 million clothes cleaned"
+
+unless explicitly marked as sample/demo data.
+
+SECTION 9:
+Final CTA
+
+"Your laundry day just got easier."
+
+Button:
+"Schedule a Pickup"
+
+==================================================
+9. DYNAMIC CARDS
+==================================================
+
+Cards should not just sit statically on the page.
+
+Use JavaScript to make selected cards interactive.
+
+For example, service cards can initially show:
+
+ICON
+SERVICE NAME
+SHORT DESCRIPTION
+
+When clicked:
+- card expands
+- additional information appears
+- icon/visual changes subtly
+- other cards can compress slightly
+- active card receives a stronger border/background
+- transition should be smooth
+
+Do NOT make cards flip 360 degrees.
+
+Do NOT make cards bounce excessively.
+
+Use CSS transitions + JavaScript class toggling.
+
+Example behavior:
+
+service-card
+→ click
+→ service-card.active
+→ details expand
+→ other cards remain compact
+
+The interaction should feel premium.
+
+==================================================
+10. LAUNDRY ROADMAP / HOW IT WORKS
+==================================================
+
+Create a visually interesting laundry journey.
+
+Example:
+
+01
+BOOK
+↓
+02
+PICKUP
+↓
+03
+SORT & INSPECT
+↓
+04
+CLEAN
+↓
+05
+QUALITY CHECK
+↓
+06
+DELIVER
+
+But instead of a boring vertical numbered list, create a dynamic roadmap/timeline.
+
+Each stage should have:
+- number
+- icon
+- title
+- short explanation
+
+The connecting arrow/path should visually travel through the stages.
+
+When the user scrolls into the roadmap:
+- the arrow/path animates
+- each step activates sequentially
+- the active pointer gets its own accent color
+- inactive stages remain muted
+- the active stage has a subtle scale/highlight effect
+
+The colors should remain within the overall cool palette.
+
+Suggested muted stage accents:
+- blue
+- teal
+- aqua
+- muted green
+- soft lavender if necessary
+
+Do not use rainbow colors.
+
+The arrow should appear to move from one stage to another using CSS/JavaScript animation.
+
+==================================================
+11. PARALLAX
+==================================================
+
+Use subtle parallax in selected sections.
+
+Possible elements:
+- 3D shirt
+- background circles
+- laundry photographs/illustrations
+- section headings
+- map route
+
+Different layers should move at slightly different speeds.
+
+Do NOT make the entire website move excessively.
+
+Parallax should support the design, not become the design.
+
+Respect:
+
+@media (prefers-reduced-motion: reduce)
+
+When reduced motion is enabled:
+- disable major animations
+- keep transitions minimal
+- preserve functionality
+
+==================================================
+12. NAVIGATION
+==================================================
+
+Create a clean desktop navigation.
+
+Logo:
+MeraDhobi
+
+Navigation:
+
+Home
+Services
+How It Works
+Pricing
+About
+Contact
+
+Right side:
+"Schedule Pickup"
+
+The navigation should be sticky.
+
+As the user scrolls:
+- navbar becomes slightly more compact
+- background becomes more opaque
+- subtle border/shadow appears
+
+Do NOT make a giant navbar.
+
+On mobile:
+- hamburger menu
+- smooth opening/closing
+- accessible buttons
+
+==================================================
+13. MULTI-PAGE STRUCTURE
+==================================================
+
+This is NOT supposed to be one giant HTML file.
+
+Create separate pages.
+
+Recommended structure:
+
+/
+│
+├── index.html
+├── services.html
+├── how-it-works.html
+├── pricing.html
+├── about.html
+├── contact.html
+├── booking.html
+│
+├── css/
+│   ├── style.css
+│   ├── components.css
+│   ├── animations.css
+│   └── responsive.css
+│
+├── js/
+│   ├── main.js
+│   ├── navigation.js
+│   ├── cards.js
+│   ├── roadmap.js
+│   ├── booking.js
+│   └── animations.js
+│
+├── assets/
+│   ├── images/
+│   ├── icons/
+│   └── models/
+│
+└── README.md
+
+You may simplify the CSS/JS file structure if necessary, but keep HTML pages separate.
+
+Every page must work independently when opened/live-served.
+
+Navigation links must correctly connect all pages.
+
+Do not create fake links that lead nowhere.
+
+==================================================
+14. SERVICES PAGE
+==================================================
+
+Create a dedicated services.html.
+
+Show the laundry services in an elegant grid/list.
+
+Services:
+
+Wash & Fold
+Dry Cleaning
+Steam Ironing
+Stain Treatment
+Delicate Fabric Care
+Express Laundry
+
+Each service card should have:
+- icon
+- title
+- description
+- suitable garment examples
+- estimated turnaround
+- "Add to Laundry" or "Choose Service"
+
+Use JavaScript interaction.
+
+Clicking a service can expand its details.
+
+==================================================
+15. PRICING PAGE
+==================================================
+
+Create pricing.html.
+
+Use realistic DEMO pricing suitable for an Indian laundry service.
+
+Clearly treat prices as sample/demo pricing rather than claiming they represent a real company.
+
+Example categories:
+
+Shirts
+T-Shirts
+Trousers
+Jeans
+Bedsheets
+Blankets
+Suits
+Sarees
+
+Use clean pricing rows/cards.
+
+Add a simple JavaScript price estimator.
+
+For example:
+
+Select garment
+Select quantity
+Select service
+
+Then calculate:
+
+Estimated Total
+
+This is an important JavaScript feature for demonstrating DOM manipulation and calculations.
+
+Do not require a backend.
+
+==================================================
+16. BOOKING PAGE
+==================================================
+
+Create booking.html.
+
+Include a functional frontend booking form:
+
+Name
+Phone
+Email
+Pickup Address
+Pickup Date
+Preferred Time
+Laundry Service
+Special Instructions
+
+JavaScript validation must work.
+
+On submission:
+- prevent actual form submission
+- validate fields
+- display an attractive confirmation state
+- generate a simple booking/reference number on the frontend
+- show selected booking details
+
+Clearly make this a frontend demo.
+
+Do not pretend the booking was sent to a real server.
+
+==================================================
+17. CONTACT PAGE
+==================================================
+
+Create contact.html.
+
+Include:
+- contact information
+- service area section
+- contact form
+- FAQ
+- simple map-inspired visual
+
+FAQ should use accordion interaction.
+
+Only one or a few FAQ items should expand at a time.
+
+==================================================
+18. ABOUT PAGE
+==================================================
+
+Create about.html.
+
+Explain the fictional MeraDhobi brand.
+
+Theme:
+
+"MeraDhobi treats laundry as clothing care, not just washing."
+
+Discuss:
+- fabric care
+- convenience
+- doorstep pickup
+- careful sorting
+- modern service experience
+
+Do not make unsupported corporate claims.
+
+==================================================
+19. HOW IT WORKS PAGE
+==================================================
+
+Create how-it-works.html.
+
+This page should contain the full interactive laundry roadmap.
+
+Make this page visually distinct from the homepage but maintain the same design system.
+
+Include:
+
+Book
+Pickup
+Sort
+Clean
+Quality Check
+Deliver
+
+The active roadmap step should respond to:
+- scroll
+- hover
+- click
+
+Clicking a step should reveal more details.
+
+==================================================
+20. JAVASCRIPT REQUIREMENTS
+==================================================
+
+Use JavaScript meaningfully.
+
+At minimum implement:
+
+1. Mobile navigation toggle
+2. Sticky navbar state
+3. Scroll reveal animations
+4. Parallax effect
+5. Interactive service cards
+6. Interactive fabric cards
+7. Roadmap animation
+8. FAQ accordion
+9. Pricing calculator
+10. Booking form validation
+11. Booking confirmation UI
+12. Smooth scrolling
+13. Active navigation state
+14. 3D shirt interaction
+15. Reduced-motion handling
+
+Do not use JavaScript just to add pointless effects.
+
+==================================================
+21. ACCESSIBILITY
+==================================================
+
+Use semantic HTML.
+
+Use:
+- header
+- nav
+- main
+- section
+- article
+- footer
+- button
+- form
+- label
+
+Images must have meaningful alt text.
+
+Interactive elements must be keyboard accessible.
+
+Do not make clickable divs when a button is appropriate.
+
+Ensure sufficient text contrast.
+
+Add visible focus states.
+
+==================================================
+22. RESPONSIVENESS
+==================================================
+
+The website must work on:
+
+Desktop:
+1440px
+1280px
+1024px
+
+Tablet:
+768px
+
+Mobile:
+390px
+375px
+
+Do not simply shrink the desktop layout.
+
+For mobile:
+- reorganize hero
+- stack content
+- make 3D shirt smaller
+- convert grids into horizontal/vertical layouts where appropriate
+- ensure navigation becomes a hamburger
+- prevent horizontal overflow
+
+==================================================
+23. TYPOGRAPHY
+==================================================
+
+Use a modern clean sans-serif font.
+
+You may use Google Fonts through CDN/import.
+
+Possible combinations:
+- Inter
+- Manrope
+- DM Sans
+- Plus Jakarta Sans
+
+Use one primary font family, or at most two.
+
+Typography hierarchy should be obvious.
+
+Large hero heading.
+Medium section headings.
+Comfortable body text.
+
+Do not use excessively thin text that becomes difficult to read.
+
+==================================================
+24. IMAGES AND VISUALS
+==================================================
+
+The visual reference includes:
+
+1. A realistic floating white button-down shirt.
+2. Folded clothes.
+3. A clean pale-blue map/pickup route visual.
+4. Small service/product cards.
+
+Use these ideas, but do NOT copy the reference layout exactly.
+
+If external images are needed:
+- use reliable publicly accessible image sources
+- use appropriate image URLs
+- optimize image sizes
+- provide alt text
+
+Prefer locally stored assets when practical.
+
+For the map visual, do not embed Google Maps requiring an API key.
+
+Create a stylized CSS/SVG map-inspired graphic instead.
+
+==================================================
+25. ICONS
+==================================================
+
+Use Lucide Icons or another popular lightweight icon library through CDN.
+
+Use icons for:
+- washing
+- shirt
+- hanger
+- truck
+- location
+- clock
+- iron
+- sparkle
+- shield
+- fabric
+- phone
+- mail
+
+Icons should be subtle.
+
+Do not place an icon inside every single sentence.
+
+==================================================
+26. ANIMATION STYLE
+==================================================
+
+Animation philosophy:
+
+"Quiet luxury."
+
+Use:
+- fade
+- slide
+- scale
+- reveal
+- subtle rotation
+- parallax
+- path progression
+- cloth movement
+
+Animation duration should generally be around:
+300ms–900ms
+
+Some hero animations may be slower.
+
+Avoid:
+- bouncing buttons
+- spinning icons
+- constant pulsing
+- excessive blur
+- huge zoom effects
+- animations that make text hard to read
+
+==================================================
+27. FOOTER
+==================================================
+
+Create a clean footer.
+
+Include:
+
+MeraDhobi
+
+"Care for every thread."
+
+Links:
+Services
+How It Works
+Pricing
+About
+Contact
+
+Contact:
+Phone
+Email
+Service hours
+
+Social icons may be included.
+
+Include:
+© 2026 MeraDhobi. Demo website for educational purposes.
+
+==================================================
+28. CODE COMMENTS
+==================================================
+
+The code may be inspected by my evaluator.
+
+Write comments that explain the actual implementation.
+
+Comments should be specific and technically meaningful.
+
+GOOD COMMENT:
+
+/* Expands the selected service card while keeping other cards compact. */
+
+BAD COMMENT:
+
+/* This is for viva. */
+
+GOOD:
+
+// Calculate the estimated laundry cost from the selected service,
+// garment quantity, and per-item price.
+
+BAD:
+
+// Important code.
+
+Do NOT mention:
+- viva
+- evaluator
+- college assignment
+- "AI generated"
+- ChatGPT
+- prompts
+- instructions
+
+inside the website or source-code comments.
+
+Comments should explain:
+- why a section exists
+- what an event listener does
+- what an animation controls
+- how DOM elements are selected
+- how calculations work
+- how the 3D animation works
+- how responsive behavior is handled
+
+==================================================
+29. CODE QUALITY
+==================================================
+
+Write readable code.
+
+Use meaningful variable names.
+
+Avoid:
+
+x
+y
+foo
+bar
+temp123
+
+Prefer:
+
+selectedService
+bookingForm
+roadmapSteps
+totalPrice
+activeCard
+
+Do not duplicate the same JavaScript logic across pages.
+
+Use reusable CSS classes.
+
+Use CSS variables for the color palette.
+
+Example:
+
+:root {
+    --color-background: ...;
+    --color-surface: ...;
+    --color-primary: ...;
+    --color-text: ...;
+}
+
+Keep the code organized.
+
+==================================================
+30. NO UNNECESSARY REPETITION
+==================================================
+
+This is extremely important.
+
+Do not repeat the same section on every page.
+
+For example:
+- Do not put the same giant CTA after every tiny section.
+- Do not repeat statistics.
+- Do not repeat the same service cards on every page.
+- Do not put the same "Why choose us" section everywhere.
+- Do not make every page look like a copy of index.html.
+
+Each page should have a clear purpose.
+
+Homepage:
+brand story + visual experience
+
+Services:
+services
+
+How It Works:
+laundry process
+
+Pricing:
+pricing + calculator
+
+About:
+brand story
+
+Contact:
+contact + FAQ
+
+Booking:
+booking flow
+
+==================================================
+31. HOMEPAGE SHOULD FEEL SPECIAL
+==================================================
+
+index.html should be the most visually impressive page.
+
+It should feel like a scrolling story:
+
+FLOATING SHIRT
+↓
+"CARE FOR YOUR CLOTHES"
+↓
+PROBLEM
+↓
+SOLUTION
+↓
+SERVICES
+↓
+LAUNDRY JOURNEY
+↓
+FABRIC CARE
+↓
+PICKUP / DELIVERY
+↓
+FINAL CTA
+
+Use visual continuity between sections.
+
+For example, the shirt can visually transition upward as the user leaves the hero.
+
+==================================================
+32. MICROINTERACTIONS
+==================================================
+
+Add tasteful microinteractions.
+
+Examples:
+
+Buttons:
+- subtle arrow movement on hover
+- slight background transition
+
+Cards:
+- slight elevation
+- border change
+- content reveal
+
+Navigation:
+- active underline
+- smooth transition
+
+Roadmap:
+- active node expands
+- connecting path progresses
+
+Forms:
+- focus states
+- validation feedback
+
+Do not overanimate.
+
+==================================================
+33. PERFORMANCE
+==================================================
+
+Keep the website reasonably lightweight.
+
+Do not import huge libraries unnecessarily.
+
+For Three.js:
+- only load required modules
+- avoid unnecessary post-processing
+- use reasonable pixel ratio
+- pause or reduce animation when the hero is not visible if appropriate
+
+Use requestAnimationFrame for continuous animation.
+
+Avoid excessive DOM manipulation on every scroll event.
+
+Use IntersectionObserver for scroll-reveal effects where appropriate.
+
+==================================================
+34. ERROR HANDLING / FALLBACKS
+==================================================
+
+The website must not break if:
+- Three.js fails to load
+- 3D model fails to load
+- an external image fails
+- JavaScript is partially unavailable
+
+The main content should remain usable.
+
+If the 3D model cannot load:
+show a visually appropriate fallback rather than a blank area.
+
+==================================================
+35. IMPORTANT VISUAL RULE
+==================================================
+
+The website should NOT look like:
+
+"AI Laundry Dashboard"
+
+It should look like:
+
+"A premium modern laundry-care brand website."
+
+Think:
+editorial website
++
+fashion/fabric aesthetic
++
+modern logistics
++
+subtle technology
++
+clean blue-white environment.
+
+==================================================
+36. IMPLEMENTATION ORDER
+==================================================
+
+Build the project in this order:
+
+STEP 1:
+Create folder/file structure.
+
+STEP 2:
+Create global CSS variables and typography.
+
+STEP 3:
+Build navbar and footer.
+
+STEP 4:
+Build homepage hero.
+
+STEP 5:
+Implement Three.js shirt.
+
+STEP 6:
+Implement shirt cloth/wave movement.
+
+STEP 7:
+Implement hero mouse/parallax interaction.
+
+STEP 8:
+Build homepage sections.
+
+STEP 9:
+Implement dynamic cards.
+
+STEP 10:
+Implement roadmap animation.
+
+STEP 11:
+Build separate pages.
+
+STEP 12:
+Implement booking/pricing JavaScript.
+
+STEP 13:
+Implement responsive design.
+
+STEP 14:
+Test every navigation link.
+
+STEP 15:
+Check browser console for errors.
+
+STEP 16:
+Check mobile layout.
+
+STEP 17:
+Remove unnecessary code and duplicate styles.
+
+==================================================
+37. FINAL VALIDATION
+==================================================
+
+Before considering the project complete, verify:
+
+[ ] index.html works
+[ ] services.html works
+[ ] how-it-works.html works
+[ ] pricing.html works
+[ ] about.html works
+[ ] contact.html works
+[ ] booking.html works
+[ ] navbar links work
+[ ] footer links work
+[ ] mobile menu works
+[ ] service cards expand/collapse
+[ ] roadmap animates
+[ ] roadmap arrow progresses
+[ ] roadmap colors change per active stage
+[ ] FAQ accordion works
+[ ] price calculator works
+[ ] booking form validates
+[ ] booking confirmation works
+[ ] 3D shirt loads
+[ ] 3D shirt has subtle movement
+[ ] mouse interaction works
+[ ] parallax works
+[ ] reduced-motion mode works
+[ ] no horizontal overflow
+[ ] no broken images
+[ ] no console errors
+[ ] no dead buttons
+[ ] no placeholder lorem ipsum
+[ ] no fake statistics
+[ ] no unnecessary repeated sections
+[ ] no yellow-heavy palette
+[ ] no excessive gradients
+[ ] no excessive animations
+
+==================================================
+38. MOST IMPORTANT INSTRUCTION
+==================================================
+
+Prioritize DESIGN COHERENCE over adding more features.
+
+If you have to choose between:
+A) adding another flashy feature
+B) polishing an existing interaction
+
+choose B.
+
+The finished website should feel like one carefully designed product.
+
+Do not keep adding UI elements simply because there is empty space.
+
+Whitespace is intentional.
+
+Do not make every section a card grid.
+
+Mix:
+- typography
+- whitespace
+- large visual compositions
+- cards
+- timelines
+- interactive elements
+- image/3D areas
+
+The website should feel premium, calm and memorable.
+
+==================================================
+39. START NOW
+==================================================
+
+First inspect the current project directory.
+
+If files already exist:
+- do not blindly overwrite everything
+- inspect existing structure
+- preserve useful assets/code where appropriate
+- refactor only when necessary
+
+Then implement the website.
+
+Do not stop after creating a plan.
+
+Actually create the complete working files.
+
+After implementation, run/test the project and fix:
+- broken paths
+- JavaScript errors
+- CSS issues
+- responsiveness problems
+- broken navigation
+- 3D loading errors
+
+The final result must be a complete, functional, polished MeraDhobi website using HTML, CSS and vanilla JavaScript with optional CDN libraries.

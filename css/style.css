@@ -1,0 +1,905 @@
+/* ============================================================
+   MeraDhobi: global styles
+   Cool laundry palette: white fabric against pale blue.
+   All colors live in custom properties so every page stays
+   consistent; component-specific rules live in components.css.
+   ============================================================ */
+
+/* ---------- 1. Design tokens ---------- */
+:root {
+    /* Palette: locked, do not introduce new hues */
+    --color-background: #F5FAFC;
+    --color-pale: #E4F1F5;
+    --color-soft: #C8E2E9;
+    --color-accent: #78B8C8;
+    --color-deep: #123243;
+    --color-ink: #0B202B;
+    --color-muted: #58717C;
+    --color-surface: #FFFFFF;
+    --color-mint: #B9DDD5;
+
+    /* Stage accents for the roadmap (muted, same family) */
+    --stage-1: #6FA8BC;
+    --stage-2: #4E94A8;
+    --stage-3: #78B8C8;
+    --stage-4: #58A795;
+    --stage-5: #74B7A8;
+    --stage-6: #9FC6BC;
+
+    /* Typography */
+    --font-body: "Manrope", "Segoe UI", system-ui, -apple-system, sans-serif;
+    --font-display: "Fraunces", Georgia, "Times New Roman", serif;
+
+    /* Rhythm */
+    --space-section: clamp(84px, 11vw, 150px);
+    --radius-sm: 10px;
+    --radius-md: 16px;
+    --radius-lg: 22px;
+
+    /* Elevation: kept quiet on purpose */
+    --shadow-soft: 0 10px 30px rgba(18, 50, 67, 0.08);
+    --shadow-lift: 0 16px 40px rgba(18, 50, 67, 0.12);
+
+    /* Layout */
+    --container: 1180px;
+    --nav-height: 74px;
+    --nav-height-compact: 60px;
+}
+
+/* ---------- 2. Reset & base ---------- */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+}
+
+body {
+    margin: 0;
+    font-family: var(--font-body);
+    font-size: 17px;
+    line-height: 1.65;
+    color: var(--color-ink);
+    background-color: var(--color-background);
+    overflow-x: hidden;
+}
+
+img,
+svg {
+    display: block;
+    max-width: 100%;
+}
+
+h1, h2, h3, h4 {
+    margin: 0 0 0.6em;
+    line-height: 1.12;
+    font-weight: 700;
+    color: var(--color-deep);
+    letter-spacing: -0.015em;
+}
+
+h1 { font-size: clamp(2.4rem, 5.2vw, 4.3rem); }
+h2 { font-size: clamp(1.9rem, 3.6vw, 2.9rem); }
+h3 { font-size: clamp(1.15rem, 2vw, 1.45rem); }
+
+p {
+    margin: 0 0 1em;
+    color: var(--color-muted);
+}
+
+a {
+    color: var(--color-deep);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: var(--color-accent);
+}
+
+ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+button {
+    font: inherit;
+    cursor: pointer;
+}
+
+/* Visible, consistent focus ring for keyboard users */
+:focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 3px;
+    border-radius: 4px;
+}
+
+::selection {
+    background: var(--color-soft);
+    color: var(--color-deep);
+}
+
+/* ---------- 3. Typography helpers ---------- */
+.display-serif {
+    font-family: var(--font-display);
+    font-weight: 560;
+    font-style: italic;
+    letter-spacing: -0.01em;
+}
+
+.eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--color-accent);
+    margin-bottom: 18px;
+}
+
+.lead {
+    font-size: clamp(1.05rem, 1.5vw, 1.22rem);
+    color: var(--color-muted);
+}
+
+.section-title {
+    max-width: 640px;
+}
+
+.section-head {
+    margin-bottom: clamp(40px, 6vw, 72px);
+}
+
+.section-head.center {
+    text-align: center;
+}
+
+.section-head.center .section-title,
+.section-head.center .eyebrow {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.section-head.center .eyebrow {
+    justify-content: center;
+}
+
+.text-accent { color: var(--color-accent); }
+.text-mint { color: #6da396; }
+
+/* ---------- 4. Layout primitives ---------- */
+.container {
+    width: min(var(--container), 100% - 48px);
+    margin-inline: auto;
+}
+
+.container-narrow {
+    width: min(760px, 100% - 48px);
+    margin-inline: auto;
+}
+
+.section {
+    position: relative;
+    padding-block: var(--space-section);
+}
+
+.section-tint {
+    background: linear-gradient(180deg, var(--color-pale) 0%, var(--color-background) 100%);
+}
+
+.section-deep {
+    background: var(--color-deep);
+    color: var(--color-pale);
+}
+
+.section-deep h2,
+.section-deep h3 {
+    color: var(--color-surface);
+}
+
+.section-deep p {
+    color: rgba(228, 241, 245, 0.75);
+}
+
+/* Main content starts below the fixed navbar */
+main {
+    padding-top: var(--nav-height);
+}
+
+/* ---------- 5. Buttons ---------- */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 14px 28px;
+    border-radius: 999px;
+    border: 1.5px solid transparent;
+    font-weight: 700;
+    font-size: 0.95rem;
+    line-height: 1;
+    transition: background-color 0.3s ease, color 0.3s ease,
+                border-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.btn .btn-arrow {
+    transition: transform 0.3s ease;
+}
+
+/* Arrow nudges forward on hover: a quiet microinteraction */
+.btn:hover .btn-arrow {
+    transform: translateX(4px);
+}
+
+.btn-primary {
+    background: var(--color-deep);
+    color: var(--color-surface);
+}
+
+.btn-primary:hover {
+    background: #1b4a61;
+    color: var(--color-surface);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-soft);
+}
+
+.btn-outline {
+    border-color: rgba(18, 50, 67, 0.25);
+    color: var(--color-deep);
+    background: transparent;
+}
+
+.btn-outline:hover {
+    border-color: var(--color-accent);
+    background: rgba(120, 184, 200, 0.12);
+    transform: translateY(-2px);
+}
+
+.btn-light {
+    background: var(--color-surface);
+    color: var(--color-deep);
+}
+
+.btn-light:hover {
+    background: var(--color-pale);
+    color: var(--color-deep);
+    transform: translateY(-2px);
+}
+
+.btn-sm {
+    padding: 11px 20px;
+    font-size: 0.88rem;
+}
+
+.btn-block {
+    width: 100%;
+}
+
+/* ---------- 6. Navigation ---------- */
+.site-header {
+    position: fixed;
+    inset: 0 0 auto 0;
+    z-index: 60;
+    transition: background-color 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
+    border-bottom: 1px solid transparent;
+    background: rgba(245, 250, 252, 0.55);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+}
+
+/* Compact, more opaque state applied by navigation.js after scrolling */
+.site-header.scrolled {
+    background: rgba(245, 250, 252, 0.92);
+    border-bottom-color: rgba(18, 50, 67, 0.08);
+    box-shadow: 0 6px 24px rgba(18, 50, 67, 0.06);
+}
+
+.site-header.scrolled .nav {
+    height: var(--nav-height-compact);
+}
+
+.site-header.scrolled .logo {
+    font-size: 1.25rem;
+}
+
+.nav {
+    height: var(--nav-height);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    transition: height 0.35s ease;
+}
+
+.logo {
+    font-family: var(--font-display);
+    font-size: 1.45rem;
+    font-weight: 600;
+    color: var(--color-deep);
+    letter-spacing: -0.01em;
+    transition: font-size 0.35s ease;
+}
+
+.logo span {
+    color: var(--color-accent);
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.nav-links a {
+    position: relative;
+    display: block;
+    padding: 8px 14px;
+    font-size: 0.93rem;
+    font-weight: 600;
+    color: var(--color-muted);
+    border-radius: 999px;
+    transition: color 0.3s ease, background-color 0.3s ease;
+}
+
+.nav-links a::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: 2px;
+    width: 0;
+    height: 2px;
+    border-radius: 2px;
+    background: var(--color-accent);
+    transform: translateX(-50%);
+    transition: width 0.3s ease;
+}
+
+.nav-links a:hover {
+    color: var(--color-deep);
+}
+
+/* Current page gets a solid pill + underline */
+.nav-links a.active {
+    color: var(--color-deep);
+}
+
+.nav-links a.active::after {
+    width: 18px;
+}
+
+.nav-cta {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+/* Duplicate CTA lives only inside the mobile drawer (shown ≤768px) */
+.nav-cta-mobile {
+    display: none;
+}
+
+/* Hamburger: hidden on desktop, toggled by navigation.js */
+.nav-toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    width: 44px;
+    height: 44px;
+    padding: 10px;
+    border: 1px solid rgba(18, 50, 67, 0.14);
+    border-radius: 10px;
+    background: var(--color-surface);
+}
+
+.nav-toggle .bar {
+    width: 100%;
+    height: 2px;
+    border-radius: 2px;
+    background: var(--color-deep);
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+/* Bars morph into an X while the menu is open */
+.nav-toggle[aria-expanded="true"] .bar:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+}
+
+.nav-toggle[aria-expanded="true"] .bar:nth-child(2) {
+    opacity: 0;
+}
+
+.nav-toggle[aria-expanded="true"] .bar:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+}
+
+/* ---------- 7. Page hero (inner pages) ---------- */
+.page-hero {
+    position: relative;
+    padding: clamp(70px, 9vw, 110px) 0 clamp(40px, 5vw, 64px);
+    overflow: hidden;
+}
+
+.page-hero h1 {
+    font-size: clamp(2.3rem, 4.6vw, 3.6rem);
+    max-width: 720px;
+}
+
+.page-hero .lead {
+    max-width: 560px;
+}
+
+.page-hero .hero-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px 28px;
+    margin-top: 28px;
+    font-size: 0.9rem;
+    color: var(--color-muted);
+}
+
+.page-hero .hero-meta strong {
+    color: var(--color-deep);
+}
+
+/* Shared decorative blobs sit behind hero content on every page */
+.backdrop {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: -1;
+}
+
+.backdrop .ring {
+    position: absolute;
+    border-radius: 50%;
+    border: 1.5px solid rgba(120, 184, 200, 0.28);
+}
+
+.backdrop .wash {
+    position: absolute;
+    border-radius: 50%;
+    background: radial-gradient(circle at 35% 35%, rgba(200, 226, 233, 0.85), rgba(228, 241, 245, 0) 70%);
+}
+
+/* ---------- 8. Footer ---------- */
+.site-footer {
+    background: var(--color-deep);
+    color: rgba(228, 241, 245, 0.78);
+    padding: 64px 0 0;
+    margin-top: 0;
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: 1.6fr 1fr 1fr 1.2fr;
+    gap: 48px;
+    padding-bottom: 48px;
+}
+
+.site-footer .logo {
+    color: var(--color-surface);
+}
+
+.footer-tagline {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 1.05rem;
+    color: rgba(228, 241, 245, 0.65);
+    margin-top: 4px;
+}
+
+.site-footer h4 {
+    color: var(--color-surface);
+    font-size: 0.85rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    margin-bottom: 18px;
+}
+
+.footer-links li + li {
+    margin-top: 10px;
+}
+
+.footer-links a {
+    color: rgba(228, 241, 245, 0.72);
+    font-size: 0.95rem;
+}
+
+.footer-links a:hover {
+    color: var(--color-surface);
+}
+
+.footer-contact li {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    font-size: 0.95rem;
+}
+
+.footer-contact li + li {
+    margin-top: 12px;
+}
+
+.footer-contact svg {
+    flex-shrink: 0;
+    margin-top: 3px;
+    color: var(--color-accent);
+}
+
+.footer-bottom {
+    border-top: 1px solid rgba(228, 241, 245, 0.12);
+    padding: 22px 0;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    font-size: 0.85rem;
+    color: rgba(228, 241, 245, 0.55);
+}
+
+.footer-social {
+    display: flex;
+    gap: 8px;
+}
+
+.footer-social a {
+    display: grid;
+    place-items: center;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    border: 1px solid rgba(228, 241, 245, 0.18);
+    color: rgba(228, 241, 245, 0.75);
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+.footer-social a:hover {
+    background: rgba(120, 184, 200, 0.18);
+    border-color: var(--color-accent);
+    color: var(--color-surface);
+}
+
+/* ---------- 9. Utilities ---------- */
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(32px, 5vw, 64px); align-items: center; }
+.grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+.grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+
+.center { text-align: center; }
+
+.skip-link {
+    position: absolute;
+    left: 16px;
+    top: -60px;
+    z-index: 100;
+    padding: 10px 18px;
+    background: var(--color-deep);
+    color: var(--color-surface);
+    border-radius: 0 0 10px 10px;
+    transition: top 0.3s ease;
+}
+
+.skip-link:focus {
+    top: 0;
+}
+
+/* ---------- 10. Homepage hero: CSS 3D parallax ----------
+   perspective: 1px is a deliberately shallow "camera": a plane at
+   translateZ(-1px) projects to half size, so even a 1px depth gap reads
+   as strong separation once the text is scaled back up. Perspective
+   lives on the hero rather than the body so the fixed .site-header keeps
+   the viewport as its containing block and stays pinned while scrolling. */
+.hero {
+    --hero-title-size: clamp(2.7rem, 5.6vw, 4.6rem);
+    position: relative;
+    min-height: calc(100vh - var(--nav-height));
+    display: flex;
+    align-items: flex-start;
+    padding: 30px 0 50px;
+    overflow: hidden;
+    perspective: 1px;
+    /* The origin sits on the headline so the deep text plane projects
+       without sliding away from its layout position (see .parallax-text). */
+    perspective-origin: 50% 180px;
+}
+
+/* preserve-3d keeps the text and the shirt on their own Z planes, so the
+   shirt (z = 0) naturally occludes the text (z = -1) without z-index. */
+.hero-inner {
+    position: relative;
+    display: block;
+    min-height: min(76vh, 660px);
+    transform-style: preserve-3d;
+}
+
+/* Deep layer. translateZ(-1px) halves the text; scale(2) restores its
+   design size, so only its scroll speed changes, not its dimensions. */
+.parallax-text {
+    position: relative;
+    margin-inline: auto;
+    max-width: 900px;
+    text-align: center;
+    transform: translateZ(-1px) scale(2);
+}
+
+/* Centre piece. A negative top margin of half a headline line lowers the
+   shirt so its collar covers the lower half of the final line only; the
+   margin scales with the headline so the overlap holds at every width. */
+.parallax-shirt {
+    display: block;
+    margin-inline: auto;
+    margin-top: calc(var(--hero-title-size) * -0.5);
+    width: min(90vw, 90vh, 830px);
+    height: auto;
+    pointer-events: none;
+    filter: drop-shadow(0 36px 46px rgba(18, 50, 67, 0.22));
+    /* --shirt-scroll (scroll) and --shirt-mx/-my (pointer) are composed
+       here so CSS keeps ownership of the depth transform. */
+    transform: translateZ(0)
+               translate3d(var(--shirt-mx, 0px),
+                           calc(var(--shirt-my, 0px) + var(--shirt-scroll, 0px)),
+                           0);
+}
+
+/* CTAs flank the shirt, one left and one right, and stay visible. */
+.hero-ctas {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 62%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+/* Soap-bubble accent layer. Sits between the headline and the shirt so the
+   bubbles read as floating in front of the text but behind the garment;
+   each span is positioned/sized/timed from inline custom properties. */
+.hero-bubbles {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    transform: translate3d(0, var(--bubbles-scroll, 0px), 0);
+}
+
+.bubble {
+    position: absolute;
+    left: var(--bubble-x, 50%);
+    top: var(--bubble-y, 50%);
+    width: var(--bubble-size, 22px);
+    height: var(--bubble-size, 22px);
+    border-radius: 50%;
+    border: 1px solid rgba(120, 184, 200, 0.4);
+    background: radial-gradient(circle at 32% 28%,
+                rgba(255, 255, 255, 0.95),
+                rgba(200, 226, 233, 0.5) 58%,
+                rgba(120, 184, 200, 0.18));
+    box-shadow: inset 0 0 6px rgba(255, 255, 255, 0.85),
+                0 6px 14px rgba(18, 50, 67, 0.08);
+    animation: bubble-rise var(--bubble-duration, 9s) ease-in-out infinite;
+    animation-delay: var(--bubble-delay, 0s);
+}
+
+/* Line-by-line headline: sans caps / serif italic / sans caps */
+.hero-title {
+    font-size: var(--hero-title-size);
+    line-height: 1.04;
+    letter-spacing: -0.02em;
+    text-transform: uppercase;
+    margin-bottom: 0;
+}
+
+.hero-title .hero-word {
+    display: block;
+    color: var(--color-deep);
+    font-weight: 800;
+}
+
+.hero-title .hero-word.serif-line {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-weight: 500;
+    text-transform: none;
+    color: var(--color-accent);
+    font-size: 0.94em;
+}
+
+.hero-title .hero-word.right {
+    margin-left: 0;
+}
+
+.hero-title .end-dot {
+    color: var(--color-accent);
+}
+
+.hero-meta {
+    display: flex;
+    gap: 26px;
+    margin-top: 36px;
+    font-size: 0.85rem;
+    color: var(--color-muted);
+}
+
+.hero-meta div {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.hero-meta svg {
+    color: var(--color-accent);
+}
+
+/* ---------- 11. Problem / solution editorial blocks ---------- */
+.problem-list {
+    display: grid;
+    gap: 14px;
+    margin-top: 30px;
+}
+
+.problem-list li {
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+    background: var(--color-surface);
+    border: 1px solid rgba(18, 50, 67, 0.08);
+    border-radius: var(--radius-md);
+    padding: 16px 20px;
+    font-size: 0.95rem;
+    color: var(--color-muted);
+}
+
+.problem-list li strong {
+    color: var(--color-deep);
+}
+
+.problem-list svg {
+    flex-shrink: 0;
+    margin-top: 3px;
+    color: var(--color-accent);
+}
+
+/* Photo deck: three photos stacked like a hand of cards. Hovering, focusing
+   or tapping the deck fans them open; each card keeps its own rotation so the
+   spread never looks mechanical. Cards scale down as they spread so the fan
+   stays inside the column at every width. */
+.problem-deck {
+    --deck-spread: 40%;
+
+    position: relative;
+    aspect-ratio: 4 / 5;
+    perspective: 1200px;
+}
+
+.deck-card {
+    position: absolute;
+    inset: 0;
+    margin: auto;
+    width: 82%;
+    height: 92%;
+    padding: 0;
+    border: 0;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    background: var(--color-surface);
+    box-shadow: var(--shadow-lift);
+    cursor: pointer;
+    transform: translateX(var(--x-closed, 0)) rotate(var(--r-closed, 0deg));
+    transition: transform 0.55s cubic-bezier(0.22, 0.61, 0.36, 1),
+                box-shadow 0.4s ease,
+                filter 0.4s ease;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.deck-card img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    pointer-events: none;
+}
+
+.deck-card .deck-caption {
+    position: absolute;
+    left: 12px;
+    bottom: 12px;
+    padding: 7px 13px;
+    border-radius: 999px;
+    background: rgba(18, 50, 67, 0.78);
+    color: var(--color-surface);
+    font-size: 0.8rem;
+    font-weight: 600;
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    pointer-events: none;
+}
+
+/* Resting stack: shallow offsets read as a small deck. Each card declares
+   its closed and open positions; the open ones add a scale-down. */
+.deck-card--1 {
+    --x-closed: -7%; --r-closed: -7deg;
+    --x-open: calc(var(--deck-spread) * -1); --r-open: -10deg; --s-open: 0.44;
+    z-index: 1;
+    filter: brightness(0.95);
+}
+
+.deck-card--2 {
+    --x-closed: 0; --r-closed: 1deg;
+    --x-open: 0; --r-open: 0deg; --s-open: 0.48;
+    z-index: 3;
+}
+
+.deck-card--3 {
+    --x-closed: 7%; --r-closed: 7deg;
+    --x-open: var(--deck-spread); --r-open: 10deg; --s-open: 0.44;
+    z-index: 2;
+    filter: brightness(0.95);
+}
+
+/* Open state, driven by pointer hover, keyboard focus or the tap toggle. */
+.problem-deck:hover .deck-card,
+.problem-deck:focus-within .deck-card,
+.problem-deck.is-open .deck-card {
+    transform: translateX(var(--x-open)) rotate(var(--r-open)) scale(var(--s-open, 1));
+    filter: none;
+}
+
+.deck-card:focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 3px;
+}
+
+/* ---------- 12. Fabric grid & misc pages ---------- */
+.fabric-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.booking-layout {
+    display: grid;
+    grid-template-columns: 1fr 0.85fr;
+    gap: clamp(32px, 5vw, 64px);
+    align-items: start;
+}
+
+.booking-aside {
+    position: sticky;
+    top: calc(var(--nav-height) + 24px);
+    display: grid;
+    gap: 20px;
+}
+
+.route-copy .route-facts {
+    display: grid;
+    gap: 16px;
+    margin-top: 28px;
+}
+
+.route-copy .route-facts li {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    font-size: 0.95rem;
+    color: var(--color-muted);
+}
+
+.route-copy .route-facts svg {
+    flex-shrink: 0;
+    margin-top: 3px;
+    color: var(--color-accent);
+}
+
+.route-copy .route-facts strong {
+    color: var(--color-deep);
+}

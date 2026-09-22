@@ -1,0 +1,1012 @@
+/* ============================================================
+   MeraDhobi: reusable components
+   Cards, forms, calculator, roadmap, route map, FAQ, tables.
+   Every component stays inside the pale-blue / navy palette.
+   ============================================================ */
+
+/* ---------- 1. Cards ---------- */
+.card {
+    position: relative;
+    background: var(--color-surface);
+    border: 1px solid rgba(18, 50, 67, 0.08);
+    border-radius: var(--radius-lg);
+    padding: 30px;
+    transition: transform 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease;
+}
+
+.card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lift);
+    border-color: rgba(120, 184, 200, 0.45);
+}
+
+.card-icon {
+    display: grid;
+    place-items: center;
+    width: 54px;
+    height: 54px;
+    border-radius: 16px;
+    background: var(--color-pale);
+    color: var(--color-deep);
+    margin-bottom: 20px;
+    transition: background-color 0.4s ease, color 0.4s ease, transform 0.4s ease;
+}
+
+.card h3 {
+    margin-bottom: 8px;
+}
+
+.card p {
+    font-size: 0.97rem;
+    margin-bottom: 0;
+}
+
+/* Expandable detail panel inside a card (toggled by cards.js) */
+.card-details {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 0.5s ease, opacity 0.45s ease;
+    opacity: 0;
+}
+
+.card-details > div {
+    overflow: hidden;
+}
+
+/* Active card: stronger border, tinted wash, icon flips to navy */
+.card.active {
+    border-color: var(--color-accent);
+    background: linear-gradient(175deg, #fbfdfe 0%, var(--color-pale) 130%);
+    box-shadow: var(--shadow-soft);
+}
+
+.card.active .card-icon {
+    background: var(--color-deep);
+    color: var(--color-surface);
+    transform: rotate(-6deg);
+}
+
+.card.active .card-details {
+    grid-template-rows: 1fr;
+    opacity: 1;
+    margin-top: 16px;
+}
+
+.card-details ul {
+    display: grid;
+    gap: 8px;
+    padding-top: 14px;
+    border-top: 1px dashed rgba(18, 50, 87, 0.14);
+}
+
+.card-details li {
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+    font-size: 0.9rem;
+    color: var(--color-muted);
+}
+
+.card-details li svg {
+    flex-shrink: 0;
+    margin-top: 3px;
+    color: var(--color-accent);
+}
+
+/* Non-active cards compress slightly so the active one leads */
+.card-grid.has-active .card:not(.active) {
+    opacity: 0.72;
+}
+
+.card-hint {
+    margin-top: 18px;
+    font-size: 0.82rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--color-accent);
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.card-hint svg {
+    transition: transform 0.3s ease;
+}
+
+.card.active .card-hint svg {
+    transform: rotate(180deg);
+}
+
+/* ---------- 2. Badges & pills ---------- */
+.badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 6px 14px;
+    border-radius: 999px;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    background: var(--color-pale);
+    color: var(--color-deep);
+    border: 1px solid rgba(120, 184, 200, 0.35);
+}
+
+.badge-mint { background: rgba(185, 221, 213, 0.35); color: #3d7a6d; border-color: rgba(185, 221, 213, 0.8); }
+
+/* ---------- 3. Forms ---------- */
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.form-field {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.form-field.full {
+    grid-column: 1 / -1;
+}
+
+.form-field label {
+    font-size: 0.88rem;
+    font-weight: 700;
+    color: var(--color-deep);
+}
+
+.form-field label .optional {
+    font-weight: 500;
+    color: var(--color-muted);
+    font-size: 0.8rem;
+}
+
+.form-field input,
+.form-field select,
+.form-field textarea {
+    font: inherit;
+    color: var(--color-ink);
+    background: var(--color-surface);
+    border: 1.5px solid rgba(18, 50, 67, 0.14);
+    border-radius: var(--radius-sm);
+    padding: 13px 16px;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+}
+
+.form-field textarea {
+    resize: vertical;
+    min-height: 110px;
+}
+
+.form-field input:focus,
+.form-field select:focus,
+.form-field textarea:focus {
+    outline: none;
+    border-color: var(--color-accent);
+    box-shadow: 0 0 0 4px rgba(120, 184, 200, 0.18);
+    background: #fdfeff;
+}
+
+/* Validation feedback: green border + message when valid, red when not */
+.form-field.valid input,
+.form-field.valid select,
+.form-field.valid textarea {
+    border-color: #74B7A8;
+}
+
+.form-field.invalid input,
+.form-field.invalid select,
+.form-field.invalid textarea {
+    border-color: #c86f6f;
+    background: #fdf7f6;
+}
+
+.field-error {
+    font-size: 0.8rem;
+    color: #b3554f;
+    display: none;
+}
+
+.form-field.invalid .field-error {
+    display: block;
+}
+
+/* Confirmation card shown after successful (demo) submission */
+.form-success {
+    display: none;
+    background: var(--color-surface);
+    border: 1px solid rgba(116, 183, 168, 0.5);
+    border-radius: var(--radius-lg);
+    padding: clamp(28px, 4vw, 44px);
+    text-align: center;
+    box-shadow: var(--shadow-soft);
+}
+
+.form-success.show {
+    display: block;
+    animation: rise-in 0.6s ease both;
+}
+
+.success-icon {
+    display: grid;
+    place-items: center;
+    width: 72px;
+    height: 72px;
+    margin: 0 auto 20px;
+    border-radius: 50%;
+    background: rgba(116, 183, 168, 0.16);
+    color: #4d8f7f;
+}
+
+.form-success h3 {
+    font-size: 1.5rem;
+}
+
+/* Key/value summary of what the user entered */
+.booking-summary {
+    margin: 24px auto 28px;
+    max-width: 460px;
+    text-align: left;
+    border: 1px dashed rgba(18, 50, 67, 0.18);
+    border-radius: var(--radius-md);
+    padding: 18px 22px;
+    display: grid;
+    gap: 10px;
+    background: var(--color-background);
+}
+
+.booking-summary div {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    font-size: 0.92rem;
+}
+
+.booking-summary dt { color: var(--color-muted); }
+.booking-summary dd { margin: 0; color: var(--color-deep); font-weight: 600; text-align: right; }
+
+.ref-chip {
+    display: inline-block;
+    font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+    font-size: 0.95rem;
+    letter-spacing: 0.08em;
+    background: var(--color-deep);
+    color: var(--color-mint);
+    border-radius: 8px;
+    padding: 8px 16px;
+    margin-bottom: 8px;
+}
+
+.form-note {
+    font-size: 0.82rem;
+    color: var(--color-muted);
+}
+
+/* ---------- 4. Pricing calculator & table ---------- */
+.calc-shell {
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    border: 1px solid rgba(18, 50, 67, 0.1);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    background: var(--color-surface);
+    box-shadow: var(--shadow-soft);
+}
+
+.calc-form {
+    padding: clamp(28px, 4vw, 44px);
+    display: grid;
+    gap: 20px;
+    align-content: start;
+}
+
+.calc-result {
+    background: var(--color-deep);
+    color: var(--color-pale);
+    padding: clamp(28px, 4vw, 44px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 6px;
+}
+
+.calc-result .eyebrow {
+    color: var(--color-mint);
+}
+
+.calc-total {
+    font-family: var(--font-display);
+    font-size: clamp(2.6rem, 5vw, 3.6rem);
+    font-weight: 600;
+    color: var(--color-surface);
+    line-height: 1;
+    margin: 6px 0 14px;
+}
+
+.calc-breakdown {
+    font-size: 0.9rem;
+    color: rgba(228, 241, 245, 0.75);
+    border-top: 1px dashed rgba(228, 241, 245, 0.25);
+    padding-top: 14px;
+}
+
+.calc-note {
+    font-size: 0.8rem;
+    color: rgba(228, 241, 245, 0.5);
+}
+
+.price-table-wrap {
+    border: 1px solid rgba(18, 50, 67, 0.1);
+    border-radius: var(--radius-lg);
+    background: var(--color-surface);
+    overflow: hidden;
+}
+
+.price-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.95rem;
+}
+
+.price-table th,
+.price-table td {
+    text-align: left;
+    padding: 14px 22px;
+    border-bottom: 1px solid rgba(18, 50, 67, 0.07);
+}
+
+.price-table thead th {
+    background: var(--color-pale);
+    color: var(--color-deep);
+    font-size: 0.8rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.price-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.price-table tbody tr {
+    transition: background-color 0.25s ease;
+}
+
+.price-table tbody tr:hover {
+    background: rgba(228, 241, 245, 0.55);
+}
+
+.price-table .price {
+    font-weight: 700;
+    color: var(--color-deep);
+    text-align: right;
+}
+
+.price-table th:last-child,
+.price-table td:last-child {
+    text-align: right;
+}
+
+/* ---------- 5. FAQ accordion ---------- */
+.faq-list {
+    display: grid;
+    gap: 12px;
+    max-width: 760px;
+}
+
+.faq-item {
+    background: var(--color-surface);
+    border: 1px solid rgba(18, 50, 67, 0.09);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.faq-item.open {
+    border-color: rgba(120, 184, 200, 0.55);
+    box-shadow: var(--shadow-soft);
+}
+
+.faq-question {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 18px 22px;
+    background: none;
+    border: none;
+    text-align: left;
+    font-weight: 700;
+    color: var(--color-deep);
+    font-size: 1rem;
+}
+
+.faq-question svg {
+    flex-shrink: 0;
+    color: var(--color-accent);
+    transition: transform 0.35s ease;
+}
+
+.faq-item.open .faq-question svg {
+    transform: rotate(180deg);
+}
+
+.faq-answer {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 0.4s ease;
+}
+
+.faq-answer > div {
+    overflow: hidden;
+}
+
+.faq-item.open .faq-answer {
+    grid-template-rows: 1fr;
+}
+
+.faq-answer p {
+    padding: 0 22px 18px;
+    margin: 0;
+    font-size: 0.94rem;
+}
+
+/* ---------- 6. Route map visual (pure SVG, no API key) ---------- */
+.route-map {
+    position: relative;
+    background: linear-gradient(160deg, var(--color-pale) 0%, #eef7fa 60%, var(--color-background) 100%);
+    border: 1px solid rgba(120, 184, 200, 0.35);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    min-height: 420px;
+}
+
+.route-map > svg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+}
+
+/* Small icons inside labels stay inline-sized */
+.route-label svg {
+    flex-shrink: 0;
+}
+
+.route-label {
+    position: absolute;
+    background: var(--color-surface);
+    border: 1px solid rgba(120, 184, 200, 0.4);
+    box-shadow: var(--shadow-soft);
+    border-radius: 12px;
+    padding: 10px 14px;
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--color-deep);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.route-label small {
+    display: block;
+    font-weight: 500;
+    color: var(--color-muted);
+}
+
+/* ---------- 7. How-it-works strip (compact 6-stage overview) ---------- */
+.hiw-strip {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 12px;
+    counter-reset: stage;
+}
+
+.hiw-step {
+    position: relative;
+    background: var(--color-surface);
+    border: 1px solid rgba(18, 50, 67, 0.08);
+    border-radius: var(--radius-md);
+    padding: 22px 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    cursor: pointer;
+    text-align: left;
+    transition: transform 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
+}
+
+.hiw-step:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-soft);
+}
+
+/* Each stage owns a muted accent; the active state tints border + dot */
+.hiw-step[data-stage="1"] { --stage-color: var(--stage-1); }
+.hiw-step[data-stage="2"] { --stage-color: var(--stage-2); }
+.hiw-step[data-stage="3"] { --stage-color: var(--stage-3); }
+.hiw-step[data-stage="4"] { --stage-color: var(--stage-4); }
+.hiw-step[data-stage="5"] { --stage-color: var(--stage-5); }
+.hiw-step[data-stage="6"] { --stage-color: var(--stage-6); }
+
+.hiw-step .step-num {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 1.5rem;
+    color: var(--stage-color, var(--color-accent));
+}
+
+.hiw-step .step-title {
+    font-weight: 700;
+    color: var(--color-deep);
+}
+
+.hiw-step .step-desc {
+    font-size: 0.84rem;
+    color: var(--color-muted);
+    line-height: 1.5;
+}
+
+.hiw-step .step-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--stage-color, var(--color-accent));
+    opacity: 0.5;
+    transition: opacity 0.35s ease, box-shadow 0.35s ease;
+}
+
+/* Active step: lifted, ringed dot, full-opacity accent */
+.hiw-step.active {
+    border-color: var(--stage-color, var(--color-accent));
+    box-shadow: var(--shadow-soft);
+    transform: translateY(-3px);
+}
+
+.hiw-step.active .step-dot {
+    opacity: 1;
+    box-shadow: 0 0 0 4px color-mix(in srgb, var(--stage-color) 22%, transparent);
+}
+
+/* Auto-advance bar under the strip. The fill is an animation, not a width
+   transition, so roadmap.js can restart it cleanly on every step. */
+.hiw-progress {
+    position: relative;
+    height: 3px;
+    margin-top: 14px;
+    border-radius: 999px;
+    background: rgba(18, 50, 67, 0.08);
+    overflow: hidden;
+}
+
+.hiw-progress span {
+    display: block;
+    width: 0;
+    height: 100%;
+    border-radius: inherit;
+    background: var(--stage-color, var(--color-accent));
+}
+
+.hiw-progress span.is-running {
+    animation: hiw-fill var(--hiw-duration, 3500ms) linear forwards;
+}
+
+.hiw-progress span.is-paused {
+    animation-play-state: paused;
+}
+
+/* Detail panel that follows the strip (roadmap.js writes into it) */
+.hiw-detail {
+    margin-top: 22px;
+    background: var(--color-surface);
+    border: 1px solid rgba(120, 184, 200, 0.35);
+    border-left: 4px solid var(--stage-color, var(--color-accent));
+    border-radius: var(--radius-md);
+    padding: 22px 26px;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 20px;
+    align-items: start;
+}
+
+.hiw-detail .detail-icon {
+    display: grid;
+    place-items: center;
+    width: 52px;
+    height: 52px;
+    border-radius: 14px;
+    background: var(--color-pale);
+    color: var(--color-deep);
+}
+
+.hiw-detail h3 {
+    margin-bottom: 4px;
+}
+
+.hiw-detail p {
+    margin: 0;
+    font-size: 0.94rem;
+}
+
+/* ---------- 8. Full roadmap timeline (how-it-works page) ---------- */
+.roadmap {
+    position: relative;
+    padding-block: 10px;
+}
+
+/* Confined to the marker column so the drawn line runs through the stage
+   markers rather than down the centre of the text column. */
+.roadmap-path {
+    position: absolute;
+    inset: 0 auto 0 0;
+    width: 72px;
+    height: 100%;
+    pointer-events: none;
+}
+
+/* Both layers are dotted, so the connector reads as a dotted line; the
+   progress layer simply fills in over the lighter track as you scroll. */
+.roadmap-path .path-outline {
+    fill: none;
+    stroke: rgba(120, 184, 200, 0.35);
+    stroke-width: 2.5;
+    stroke-dasharray: 1.4 9;
+    stroke-linecap: round;
+    vector-effect: non-scaling-stroke; /* keep stroke thin despite stretched viewBox */
+}
+
+.roadmap-path .path-progress {
+    fill: none;
+    stroke: url(#roadmapGradient);
+    stroke-width: 2.5;
+    stroke-dasharray: 1.4 9;
+    stroke-linecap: round;
+    vector-effect: non-scaling-stroke;
+}
+
+/* Head of the progress line. roadmap.js sets its `top` from the scroll
+   progress and its --stage-color from the active stage, so the dot visibly
+   travels between stages as the page scrolls. */
+.roadmap-pointer {
+    position: absolute;
+    top: 0;
+    left: 36px;
+    width: 16px;
+    height: 16px;
+    margin: -8px 0 0 -8px;
+    border-radius: 50%;
+    background: var(--color-surface);
+    border: 3px solid var(--stage-color, var(--color-accent));
+    box-shadow: 0 0 0 6px rgba(120, 184, 200, 0.16);
+    z-index: 3;
+    pointer-events: none;
+    transition: top 0.2s linear, border-color 0.5s ease;
+}
+
+.roadmap-item {
+    position: relative;
+    display: grid;
+    grid-template-columns: 72px 1fr;
+    gap: 28px;
+    padding: 26px 0;
+    opacity: 0.45;
+    transition: opacity 0.6s ease;
+}
+
+.roadmap-item.active {
+    opacity: 1;
+}
+
+.roadmap-marker {
+    position: relative;
+    z-index: 2;
+    display: grid;
+    place-items: center;
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    background: var(--color-surface);
+    border: 2px solid rgba(120, 184, 200, 0.3);
+    color: var(--color-muted);
+    transition: border-color 0.5s ease, color 0.5s ease, transform 0.5s ease, box-shadow 0.5s ease;
+}
+
+.roadmap-item.active .roadmap-marker {
+    transform: scale(1.06);
+    border-color: var(--stage-color, var(--color-accent));
+    color: var(--stage-color, var(--color-accent));
+    box-shadow: 0 0 0 6px color-mix(in srgb, var(--stage-color) 15%, transparent);
+    /* Slow halo on the live stage; keyframes live in animations.css. */
+    animation: marker-pulse 2.4s ease-out infinite;
+}
+
+.roadmap-item h3 {
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    cursor: pointer;
+}
+
+.roadmap-item .stage-num {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 1.1rem;
+    color: var(--stage-color, var(--color-accent));
+}
+
+/* Click-to-expand detail inside each timeline entry */
+.roadmap-more {
+    display: grid;
+    grid-template-rows: 0fr;
+    opacity: 0;
+    transition: grid-template-rows 0.5s ease, opacity 0.5s ease;
+}
+
+.roadmap-more > div {
+    overflow: hidden;
+}
+
+.roadmap-item.expanded .roadmap-more {
+    grid-template-rows: 1fr;
+    opacity: 1;
+}
+
+.roadmap-more p {
+    padding-top: 10px;
+    margin: 0;
+    border-top: 1px dashed rgba(18, 50, 67, 0.14);
+    max-width: 640px;
+    font-size: 0.95rem;
+}
+
+.roadmap-item[data-stage="1"] { --stage-color: var(--stage-1); }
+.roadmap-item[data-stage="2"] { --stage-color: var(--stage-2); }
+.roadmap-item[data-stage="3"] { --stage-color: var(--stage-3); }
+.roadmap-item[data-stage="4"] { --stage-color: var(--stage-4); }
+.roadmap-item[data-stage="5"] { --stage-color: var(--stage-5); }
+.roadmap-item[data-stage="6"] { --stage-color: var(--stage-6); }
+
+/* ---------- 9. Fabric cards (homepage) ---------- */
+.fabric-card {
+    position: relative;
+    border-radius: var(--radius-lg);
+    border: 1px solid rgba(18, 50, 67, 0.08);
+    background: var(--color-surface);
+    padding: 26px;
+    overflow: hidden;
+    cursor: pointer;
+    text-align: left;
+    width: 100%;
+    transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
+}
+
+.fabric-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-soft);
+    border-color: rgba(120, 184, 200, 0.45);
+}
+
+.fabric-card .fabric-head {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 14px;
+    margin-bottom: 14px;
+}
+
+.fabric-card .fabric-swatch {
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    flex-shrink: 0;
+    box-shadow: inset 0 0 0 1px rgba(18, 50, 67, 0.08);
+    transition: transform 0.35s ease;
+}
+
+.fabric-card:hover .fabric-swatch,
+.fabric-card.active .fabric-swatch {
+    transform: rotate(-6deg) scale(1.05);
+}
+
+.fabric-card h3 {
+    font-size: 1.1rem;
+    margin: 0;
+}
+
+.fabric-card .fabric-body p {
+    font-size: 0.9rem;
+    margin-bottom: 10px;
+}
+
+.fabric-card .fabric-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
+.fabric-card .fabric-tags span {
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 4px 10px;
+    border-radius: 999px;
+    background: var(--color-pale);
+    color: var(--color-deep);
+}
+
+.fabric-card .fabric-tip {
+    display: grid;
+    grid-template-rows: 0fr;
+    opacity: 0;
+    transition: grid-template-rows 0.45s ease, opacity 0.45s ease;
+}
+
+.fabric-card .fabric-tip > div {
+    overflow: hidden;
+}
+
+.fabric-card.active .fabric-tip {
+    grid-template-rows: 1fr;
+    opacity: 1;
+}
+
+.fabric-card .fabric-tip p {
+    margin: 12px 0 0;
+    padding-top: 12px;
+    border-top: 1px dashed rgba(18, 50, 67, 0.14);
+    font-size: 0.85rem;
+    color: var(--color-deep);
+    display: flex;
+    gap: 8px;
+}
+
+.fabric-card .fabric-tip svg {
+    flex-shrink: 0;
+    margin-top: 2px;
+    color: #58A795;
+}
+
+/* ---------- 10. Misc blocks ---------- */
+.check-list li {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    margin-bottom: 14px;
+    color: var(--color-muted);
+}
+
+.check-list svg {
+    flex-shrink: 0;
+    margin-top: 4px;
+    color: #58A795;
+}
+
+.check-list strong {
+    color: var(--color-deep);
+    font-weight: 700;
+}
+
+.value-list {
+    display: grid;
+    gap: 18px;
+}
+
+.value-list .value-row {
+    display: flex;
+    gap: 18px;
+    align-items: flex-start;
+    padding-bottom: 18px;
+    border-bottom: 1px dashed rgba(18, 50, 67, 0.12);
+}
+
+.value-list .value-row:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.value-list .value-icon {
+    display: grid;
+    place-items: center;
+    width: 48px;
+    height: 48px;
+    border-radius: 14px;
+    background: var(--color-pale);
+    color: var(--color-deep);
+    flex-shrink: 0;
+}
+
+.value-list h3 {
+    font-size: 1.05rem;
+    margin-bottom: 4px;
+}
+
+.value-list p {
+    margin: 0;
+    font-size: 0.93rem;
+}
+
+.stat-line {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 26px;
+}
+
+/* Split feature layout used on several pages */
+.feature-media {
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    border: 1px solid rgba(120, 184, 200, 0.3);
+    background: linear-gradient(160deg, var(--color-pale), #eef7fa);
+    min-height: 380px;
+    position: relative;
+}
+
+.promise-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 18px;
+}
+
+.promise-card {
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(228, 241, 245, 0.14);
+    border-radius: var(--radius-md);
+    padding: 24px 20px;
+    transition: background-color 0.35s ease, border-color 0.35s ease, transform 0.35s ease;
+}
+
+.promise-card:hover {
+    background: rgba(120, 184, 200, 0.12);
+    border-color: rgba(120, 184, 200, 0.4);
+    transform: translateY(-3px);
+}
+
+.promise-card .card-icon {
+    width: 46px;
+    height: 46px;
+    border-radius: 13px;
+    background: rgba(120, 184, 200, 0.16);
+    color: var(--color-mint);
+    margin-bottom: 16px;
+}
+
+.promise-card h3 {
+    color: var(--color-surface);
+    font-size: 1rem;
+    margin-bottom: 6px;
+}
+
+.promise-card p {
+    font-size: 0.87rem;
+    color: rgba(228, 241, 245, 0.68);
+    margin: 0;
+}
+
+/* CTA band above the footer on most pages */
+.cta-band {
+    text-align: center;
+    padding: clamp(70px, 9vw, 110px) 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.cta-band h2 {
+    font-size: clamp(2rem, 4vw, 3rem);
+    max-width: 640px;
+    margin-inline: auto;
+}
+
+.cta-band .btn-row {
+    margin-top: 34px;
+}
+
+.btn-row {
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.btn-row.center { justify-content: center; }

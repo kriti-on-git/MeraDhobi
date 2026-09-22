@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<script>document.documentElement.classList.add("js");</script>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Services · MeraDhobi</title>
+    <meta name="description" content="Wash &amp; fold, dry cleaning, steam ironing, stain treatment, delicate fabric care and express laundry, every MeraDhobi service explained.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,600;1,400;1,500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='48' fill='%23C8E2E9'/%3E%3Ctext x='50' y='68' font-size='52' text-anchor='middle' font-family='Georgia'%3EM%3C/text%3E%3C/svg%3E">
+</head>
+<body>
+    <a class="skip-link" href="#main-content">Skip to main content</a>
+
+    <header class="site-header">
+        <nav class="nav container" aria-label="Main navigation">
+            <a class="logo" href="index.html">Mera<span>Dhobi</span></a>
+            <button class="nav-toggle" aria-expanded="false" aria-controls="nav-menu" aria-label="Toggle navigation menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </button>
+            <ul class="nav-links" id="nav-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="how-it-works.html">How It Works</a></li>
+                <li><a href="pricing.html">Pricing</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li class="nav-cta-mobile"><a class="btn btn-primary btn-sm" href="booking.html">Schedule Pickup</a></li>
+            </ul>
+            <div class="nav-cta">
+                <a class="btn btn-primary btn-sm" href="booking.html">Schedule Pickup</a>
+            </div>
+        </nav>
+    </header>
+
+    <main id="main-content">
+        <!-- Page hero -->
+        <section class="page-hero">
+            <div class="backdrop" aria-hidden="true">
+                <span class="wash" style="width:420px;height:420px;top:-140px;right:-60px;"></span>
+                <span class="ring" style="width:300px;height:300px;bottom:-100px;left:-80px;"></span>
+            </div>
+            <div class="container reveal">
+                <span class="eyebrow">Services</span>
+                <h1>Every service, <span class="display-serif text-accent">one standard:</span><br>careful.</h1>
+                <p class="lead">Six focused services covering everything from daily cottons to heirloom silks. Tap any card for what's included and how long it takes.</p>
+                <div class="hero-meta">
+                    <span><strong>6</strong> services</span>
+                    <span><strong>24 to 72 hr</strong> turnarounds</span>
+                    <span><strong>Free</strong> pickup &amp; delivery</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Services grid (expandable cards, same component as homepage) -->
+        <section class="section" style="padding-top:20px;">
+            <div class="container">
+                <div class="grid-3 services-grid reveal-stagger">
+                    <article class="card service-card reveal-child" tabindex="0">
+                        <span class="card-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.38 3.46 16 2a4 4 0 0 1-8 0L3.62 3.46a2 2 0 0 0-1.34 2.23l.58 3.47a1 1 0 0 0 .99.84H6v10c0 1.1.9 2 2 2h8a2 2 0 0 0 2-2V10h2.15a1 1 0 0 0 .99-.84l.58-3.47a2 2 0 0 0-1.34-2.23z"/></svg>
+                        </span>
+                        <h3>Wash &amp; Fold</h3>
+                        <p>Daily wear, drawer-ready.</p>
+                        <div class="card-details">
+                            <div>
+                                <ul>
+                                    <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Sorted by colour and fabric before washing</li>
+                                    <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Mild, skin-friendly detergents</li>
+                                    <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Turnaround: about 48 hours</li>
+                                </ul>
+                                <span class="card-hint">Everyday wear · Tees · Nightsuits</span>
+                            </div>
+                        </div>
+                        <a class="btn btn-outline btn-sm" href="booking.html?service=Wash%20%26%20Fold" style="margin-top:18px;">Add to Laundry</a>
+                    </article>
+
+                    <article class="card service-card reveal-child" tabindex="0">
+                        <span class="card-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/></svg>
+                        </span>
+                        <h3>Dry Cleaning</h3>
+                        <p>Shape, finish and colour preserved.</p>
+                        <div class="card-details">
+                            <div>
+                                <ul>
+                                    <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Garments returned on hangers</li>
+                                    <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Collar, cuff and lining attention</li>
+                                    <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Turnaround: about 72 hours</li>
+                                </ul>
+                                <span class="card-hint">Suits · Blazers · Formal shirts</span>
+                            </div>
+                        </div>
+                        <a class="btn btn-outline btn-sm" href="booking.html?service=Dry%20Cleaning" style="margin-top:18px;">Add to Laundry</a>
+                    </article>
+
+                    <article class="card service-card reveal-child" tabindex="0">
+                        <span class="card-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 9h18v6a3 3 0 0 1-3 3H6a3 3 0 0 1-3-3Z"/><path d="M3 9V7a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v2"/><path d="M7 21v-3"/><path d="M17 21v-3"/></svg>
+                        </span>
+                        <h3>Steam Ironing</h3>
+                        <p>Crisp creases, zero scorch.</p>
+                        <div class="card-details">
+                            <div>
+                                <ul>
+                                    <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Heat matched to each fabric type</li>
+                                    <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Crease-safe folding or hanging</li>
+                                    <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Turnaround: about 24 hours</li>
+                                </ul>
+                                <span class="card-hint">Shirts · Trousers · Uniforms</span>
+                            </div>
+                        </div>
+                        <a class="btn btn-outline btn-sm" href="booking.html?service=Steam%20Ironing" style="margin-top:18px;">Add to Laundry</a>
+                    </article>
+
+                    <article class="card service-card reveal-child" tabindex="0">
+                        <span class="card-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22a7 7 0 0 0 7-7c0-2-1-3.9-3-5.5s-3.5-4-4-6.5c-.5 2.5-2 4.9-4 6.5C6 11.1 5 13 5 15a7 7 0 0 0 7 7z"/></svg>
+                        </span>
+                        <h3>Stain Treatment</h3>
+                        <p>Stain identified, then targeted.</p>
+                        <div class="card-details">
+                            <div>
+                                <ul>
+                                    <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Stain identified before any wash</li>
+                                    <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Fabric-safe spot removers</li>
+                                    <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Turnaround: with your wash order</li>
+                                </ul>
+                                <span class="card-hint">Curry · Coffee · Ink · Sweat</span>
+                            </div>
+                        </div>
+                        <a class="btn btn-outline btn-sm" href="booking.html?service=Stain%20Treatment" style="margin-top:18px;">Add to Laundry</a>
+                    </article>
+
+                    <article class="card service-card reveal-child" tabindex="0">
+                        <span class="card-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12.5 22 18 15.5 16 10l3-3-2-2-3 3-5.5-.5L3 13l4 1.5L9.5 19Z"/><path d="M4 20c1.5-1.5 3-1.5 4.5 0"/></svg>
+                        </span>
+                        <h3>Delicate Fabric Care</h3>
+                        <p>Hand-washed in mesh, never tumbled.</p>
+                        <div class="card-details">
+                            <div>
+                                <ul>
+                                    <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Cold water, minimal agitation</li>
+                                    <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Air-dried away from direct sun</li>
+                                    <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Turnaround: about 72 hours</li>
+                                </ul>
+                                <span class="card-hint">Silk · Lace · Chiffon · Embroidery</span>
+                            </div>
+                        </div>
+                        <a class="btn btn-outline btn-sm" href="booking.html?service=Delicate%20Fabric%20Care" style="margin-top:18px;">Add to Laundry</a>
+                    </article>
+
+                    <article class="card service-card reveal-child" tabindex="0">
+                        <span class="card-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+                        </span>
+                        <h3>Express Laundry</h3>
+                        <p>Morning in, evening out.</p>
+                        <div class="card-details">
+                            <div>
+                                <ul>
+                                    <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Dedicated fast-track load</li>
+                                    <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Pickup slots from 8 AM</li>
+                                    <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Turnaround: same day, by 8 PM</li>
+                                </ul>
+                                <span class="card-hint">Meetings · Travel · Emergencies</span>
+                            </div>
+                        </div>
+                        <a class="btn btn-outline btn-sm" href="booking.html?service=Express%20Laundry" style="margin-top:18px;">Add to Laundry</a>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- Add-on services: simple, non-card editorial list -->
+        <section class="section section-tint">
+            <div class="container grid-2">
+                <div class="reveal">
+                    <span class="eyebrow">Good to know</span>
+                    <h2>Small extras, <span class="display-serif">no surprises.</span></h2>
+                    <p class="lead">Add-ons are chosen at pickup and simply appear as line items on your demo order summary.</p>
+                </div>
+                <div class="value-list reveal">
+                    <div class="value-row">
+                        <span class="value-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 5c3.5 3.5 3.5 10.5 0 14"/><path d="M16 8.5a5 5 0 0 1 0 7"/><path d="M13 11.5a1.5 1.5 0 0 1 0 3"/><path d="M4 3v18"/><path d="M4 12h9"/></svg>
+                        </span>
+                        <div>
+                            <h3>Anti-bacterial rinse</h3>
+                            <p>A final sanitising rinse for towels, bedsheets and sportswear, included on request.</p>
+                        </div>
+                    </div>
+                    <div class="value-row">
+                        <span class="value-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2v20"/><path d="M8 22h8"/><path d="M12 2a6 6 0 0 1 6 6c0 3-2 4-2 6H8c0-2-2-3-2-6a6 6 0 0 1 6-6z"/></svg>
+                        </span>
+                        <div>
+                            <h3>Fabric softener</h3>
+                            <p>Skin-friendly softener for towels and winterwear, skipped for activewear on request.</p>
+                        </div>
+                    </div>
+                    <div class="value-row">
+                        <span class="value-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+                        </span>
+                        <div>
+                            <h3>Custom folding</h3>
+                            <p>Prefer boutique-style flat folds or hanger-return? Tell the rider, we follow your drawer.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Single focused CTA -->
+        <section class="cta-band">
+            <div class="container reveal">
+                <h2>Not sure which service fits?</h2>
+                <p class="lead" style="max-width:480px;margin:0 auto 34px;">The price estimator matches garments to services in a couple of clicks.</p>
+                <div class="btn-row center">
+                    <a class="btn btn-primary" href="pricing.html">Try the Price Estimator</a>
+                    <a class="btn btn-outline" href="booking.html">Schedule a Pickup</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <a class="logo" href="index.html">Mera<span>Dhobi</span></a>
+                    <p class="footer-tagline">Care for every thread.</p>
+                </div>
+                <div>
+                    <h4>Explore</h4>
+                    <ul class="footer-links">
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="how-it-works.html">How It Works</a></li>
+                        <li><a href="pricing.html">Pricing</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Get started</h4>
+                    <ul class="footer-links">
+                        <li><a href="booking.html">Schedule a pickup</a></li>
+                        <li><a href="pricing.html">Price estimator</a></li>
+                        <li><a href="contact.html">FAQs</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Contact</h4>
+                    <ul class="footer-contact">
+                        <li>
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                            <span>+91 98765 43210 (demo)</span>
+                        </li>
+                        <li>
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+                            <span>hello@meradhobi.example</span>
+                        </li>
+                        <li>
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+                            <span>Mon to Sun, 8 AM to 9 PM</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <span>© <span data-current-year>2026</span> MeraDhobi. Demo website for educational purposes.</span>
+                <div class="footer-social">
+                    <a href="#" aria-label="MeraDhobi on Instagram">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="20" height="20" x="2" y="2" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
+                    </a>
+                    <a href="#" aria-label="MeraDhobi on X (Twitter)">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"/></svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+    <script src="js/navigation.js" defer></script>
+    <script src="js/animations.js" defer></script>
+    <script src="js/cards.js" defer></script>
+    <script src="js/main.js" defer></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            if (window.lucide) window.lucide.createIcons();
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,165 @@
+/* ============================================================
+   MeraDhobi: animations
+   Philosophy: "quiet luxury". Fades, slides and reveals in the
+   300 to 900ms range. All major motion is disabled when the user
+   prefers reduced motion (see the media query at the bottom).
+   ============================================================ */
+
+/* ---------- 1. Keyframes ---------- */
+@keyframes rise-in {
+    from { opacity: 0; transform: translateY(26px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fade-in {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+/* Slow background rings breathing behind the hero */
+@keyframes ring-breathe {
+    0%, 100% { transform: scale(1); opacity: 0.55; }
+    50%      { transform: scale(1.05); opacity: 0.8; }
+}
+
+/* ---------- 2. Scroll-reveal system (driven by animations.js) ----------
+   Hidden states only apply when JS is running (html.js), so the page
+   stays fully visible if scripts fail or are disabled. */
+.js .reveal {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.22, 0.61, 0.36, 1);
+    will-change: opacity, transform;
+}
+
+.js .reveal.revealed {
+    opacity: 1;
+    transform: none;
+}
+
+/* Staggered children: parent gets .reveal-stagger, children .reveal-child */
+.js .reveal-stagger .reveal-child {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.65s ease, transform 0.65s cubic-bezier(0.22, 0.61, 0.36, 1);
+    transition-delay: calc(var(--reveal-index, 0) * 90ms);
+}
+
+.js .reveal-stagger.revealed .reveal-child {
+    opacity: 1;
+    transform: none;
+}
+
+/* ---------- 3. Hero entrance ---------- */
+.hero-copy > * {
+    animation: rise-in 0.9s cubic-bezier(0.22, 0.61, 0.36, 1) both;
+}
+
+.hero-copy > *:nth-child(1) { animation-delay: 0.05s; }
+.hero-copy > *:nth-child(2) { animation-delay: 0.18s; }
+.hero-copy > *:nth-child(3) { animation-delay: 0.31s; }
+.hero-copy > *:nth-child(4) { animation-delay: 0.44s; }
+.hero-copy > *:nth-child(5) { animation-delay: 0.57s; }
+.hero-copy > *:nth-child(6) { animation-delay: 0.7s; }
+
+/* ---------- 4. Roadmap dynamism ----------
+   The home strip's auto-advance bar fills over each interval, and the live
+   marker on the full roadmap emits a slow halo. Both are plain CSS; JS only
+   restarts / recolours them. */
+@keyframes hiw-fill {
+    from { width: 0; }
+    to   { width: 100%; }
+}
+
+@keyframes marker-pulse {
+    0%   { box-shadow: 0 0 0 0 color-mix(in srgb, var(--stage-color) 34%, transparent); }
+    70%  { box-shadow: 0 0 0 14px color-mix(in srgb, var(--stage-color) 0%, transparent); }
+    100% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--stage-color) 0%, transparent); }
+}
+
+/* ---------- 5. Hero soap bubbles ----------
+   Each bubble rises from its start point, drifting sideways as it fades in
+   and out. Duration and delay come from inline custom properties, so the
+   six bubbles never move in lockstep. */
+@keyframes bubble-rise {
+    0%   { transform: translate3d(0, 0, 0) scale(0.9); opacity: 0; }
+    18%  { opacity: 0.9; }
+    50%  { transform: translate3d(16px, -34px, 0) scale(1.08); }
+    100% { transform: translate3d(-12px, -72px, 0) scale(0.85); opacity: 0; }
+}
+
+/* ---------- 6. Decorative rings ---------- */
+.backdrop .ring {
+    animation: ring-breathe 9s ease-in-out infinite;
+}
+
+/* ---------- 7. Marquee band between sections ---------- */
+.marquee {
+    overflow: hidden;
+    border-block: 1px solid rgba(18, 50, 67, 0.08);
+    background: var(--color-surface);
+    padding: 16px 0;
+}
+
+.marquee-track {
+    display: flex;
+    gap: 64px;
+    width: max-content;
+    animation: marquee-scroll 26s linear infinite;
+}
+
+.marquee-track span {
+    display: inline-flex;
+    align-items: center;
+    gap: 14px;
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 1.05rem;
+    color: var(--color-muted);
+    white-space: nowrap;
+}
+
+.marquee-track svg {
+    color: var(--color-accent);
+}
+
+@keyframes marquee-scroll {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+}
+
+/* ---------- 8. Route truck marker pulse ---------- */
+.route-truck {
+    transition: offset-distance 0.2s linear;
+}
+
+/* ---------- 9. Reduced motion: calm everything down ---------- */
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+
+    /* Keep content visible; never hide revealed state behind animation */
+    .reveal,
+    .reveal-stagger .reveal-child {
+        opacity: 1;
+        transform: none;
+    }
+
+    .marquee-track {
+        animation: none;
+    }
+
+    /* The auto-advance bar only communicates timing; drop it entirely. */
+    .hiw-progress {
+        display: none;
+    }
+}
