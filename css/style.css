@@ -55,6 +55,8 @@
 
 html {
     scroll-behavior: smooth;
+    scroll-snap-type: y mandatory;
+    scroll-padding-top: var(--nav-height);
     -webkit-text-size-adjust: 100%;
 }
 
@@ -175,6 +177,17 @@ button {
 .text-mint { color: #6da396; }
 
 /* ---------- 4. Layout primitives ---------- */
+
+/* ---------- Scroll snap targets across all pages ---------- */
+.hero,
+.page-hero,
+main > section,
+.cta-band,
+.site-footer {
+    scroll-snap-align: start;
+    scroll-snap-stop: normal;
+}
+
 .container {
     width: min(var(--container), 100% - 48px);
     margin-inline: auto;
@@ -622,18 +635,20 @@ main {
 }
 
 /* Deep layer. translateZ(-1px) halves the text; scale(2) restores its
-   design size, so only its scroll speed changes, not its dimensions. */
+   design size. --text-mx and --text-my provide counter/anti-parallax 
+   movement against the shirt in the foreground. */
 .parallax-text {
     position: relative;
     margin-inline: auto;
     max-width: 900px;
     text-align: center;
-    transform: translateZ(-1px) scale(2);
+    transform: translateZ(-1px) scale(2)
+               translate3d(var(--text-mx, 0px), var(--text-my, 0px), 0);
+    transition: transform 0.22s cubic-bezier(0.22, 0.61, 0.36, 1);
+    will-change: transform;
 }
 
-/* Centre piece. A negative top margin of half a headline line lowers the
-   shirt so its collar covers the lower half of the final line only; the
-   margin scales with the headline so the overlap holds at every width. */
+/* Centre piece. Floating shirt in front. */
 .parallax-shirt {
     display: block;
     margin-inline: auto;
@@ -648,6 +663,8 @@ main {
                translate3d(var(--shirt-mx, 0px),
                            calc(var(--shirt-my, 0px) + var(--shirt-scroll, 0px)),
                            0);
+    transition: transform 0.22s cubic-bezier(0.22, 0.61, 0.36, 1);
+    will-change: transform;
 }
 
 /* CTAs flank the shirt, one left and one right, and stay visible. */
@@ -769,94 +786,327 @@ main {
     color: var(--color-accent);
 }
 
-/* Photo deck: three photos stacked like a hand of cards. Hovering, focusing
-   or tapping the deck fans them open; each card keeps its own rotation so the
-   spread never looks mechanical. Cards scale down as they spread so the fan
-   stays inside the column at every width. */
-.problem-deck {
-    --deck-spread: 40%;
-
-    position: relative;
-    aspect-ratio: 4 / 5;
-    perspective: 1200px;
+/* Value cards (about page): plain photo cards in a grid, light hover.
+   The shared .card base already lifts + shades on hover; this just tunes
+   the media treatment so the four photos read calmly side by side. */
+.value-cards {
+    margin-top: clamp(8px, 2vw, 20px);
 }
 
-.deck-card {
+.value-card .card-media img {
+    aspect-ratio: 4 / 3;
+}
+
+.value-card h3 {
+    font-size: 1.12rem;
+}
+
+.value-card p {
+    font-size: 0.9rem;
+}
+
+/* Contact hero: the heading centres on its own, no lead line. */
+.contact-hero .container {
+    text-align: center;
+}
+
+.contact-hero .eyebrow {
+    justify-content: center;
+}
+
+.contact-hero h1 {
+    margin-inline: auto;
+}
+
+/* ---------- 11b. Journey wheel: rotating radio timeline (home) ----------
+   Adapted from a radio-driven circular timeline: six stage dots sit on a
+   ring; picking one rotates the ring so that stage sits on top and its
+   title + description fade in below the centre. */
+.journey-wheel {
+    /* Compact ring: the whole circle fits inside one viewport height. */
+    --radius: min(26vw, 300px);
+    --duration: 200ms;
+    --wheel-pad: 2rem;
+
+    --cards-container-size: calc(var(--radius) * 2);
+
+    --label-offset: calc(var(--radius) * -1 - 1rem);
+    --label-size: 38px;
+    --label-dot-size: 12px;
+    --label-line-h: 0;
+    --label-line-h-current: 1.85rem;
+    --label-color: #6b7f88;
+    --label-color-hover: var(--color-accent);
+
+    --title-top: 1.3rem;
+    --title-offset-y: 24px;
+    --info-top: 9rem;
+    --info-width: min(72%, 420px);
+    --info-offset-y: 24px;
+
+    position: relative;
+    width: var(--cards-container-size);
+    height: var(--cards-container-size);
+    margin: 0 auto;
+    padding: var(--wheel-pad);
+    box-sizing: content-box;
+    max-width: 100%;
+}
+
+/* The hidden radio inputs drive everything; keep them focusable. */
+.journey-wheel input[type="radio"] {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+}
+
+.journey-wheel .cards {
+    position: absolute;
+    inset: var(--wheel-pad);
+    aspect-ratio: 1;
+    border-radius: 50%;
+    border: 1px solid rgba(120, 184, 200, 0.4);
+    transition: transform 0.3s ease-in-out var(--duration);
+    list-style: none;
+}
+
+.journey-wheel .cards li {
+    position: absolute;
+    inset: 0;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    place-content: center;
+    transform: rotate(calc(var(--i) * 360deg / var(--items)));
+    pointer-events: none;
+}
+
+.journey-wheel .cards li > label {
     position: absolute;
     inset: 0;
     margin: auto;
-    width: 82%;
-    height: 92%;
-    padding: 0;
-    border: 0;
-    border-radius: var(--radius-lg);
-    overflow: hidden;
-    background: var(--color-surface);
-    box-shadow: var(--shadow-lift);
+    transform: translateY(var(--label-offset));
+    width: var(--label-size);
+    height: var(--label-size);
     cursor: pointer;
-    transform: translateX(var(--x-closed, 0)) rotate(var(--r-closed, 0deg));
-    transition: transform 0.55s cubic-bezier(0.22, 0.61, 0.36, 1),
-                box-shadow 0.4s ease,
-                filter 0.4s ease;
-    -webkit-tap-highlight-color: transparent;
+    pointer-events: initial;
+    text-align: center;
+    align-content: center;
+    color: var(--label-color);
+    font-size: 0.95rem;
+    font-weight: 700;
+    transition: var(--duration) ease-in-out;
 }
 
-.deck-card img {
-    display: block;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    pointer-events: none;
-}
-
-.deck-card .deck-caption {
+.journey-wheel .cards li > label::before {
+    content: '';
     position: absolute;
-    left: 12px;
-    bottom: 12px;
-    padding: 7px 13px;
-    border-radius: 999px;
-    background: rgba(18, 50, 67, 0.78);
-    color: var(--color-surface);
-    font-size: 0.8rem;
-    font-weight: 600;
-    backdrop-filter: blur(4px);
-    -webkit-backdrop-filter: blur(4px);
-    pointer-events: none;
+    top: var(--wheel-pad);
+    left: 50%;
+    translate: -50% 0;
+    width: var(--label-dot-size);
+    height: var(--label-dot-size);
+    border-radius: 50%;
+    background-color: var(--label-color);
+    transition: background-color var(--duration) ease-in-out;
 }
 
-/* Resting stack: shallow offsets read as a small deck. Each card declares
-   its closed and open positions; the open ones add a scale-down. */
-.deck-card--1 {
-    --x-closed: -7%; --r-closed: -7deg;
-    --x-open: calc(var(--deck-spread) * -1); --r-open: -10deg; --s-open: 0.44;
-    z-index: 1;
-    filter: brightness(0.95);
+.journey-wheel .cards li > label::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    translate: -50% 5px;
+    width: 2px;
+    height: var(--label-line-h);
+    background-color: var(--color-accent);
+    transition: height 300ms ease-in-out var(--label-line-delay, 0ms);
 }
 
-.deck-card--2 {
-    --x-closed: 0; --r-closed: 1deg;
-    --x-open: 0; --r-open: 0deg; --s-open: 0.48;
-    z-index: 3;
+.journey-wheel .cards li > label:hover {
+    --label-color: var(--label-color-hover);
 }
 
-.deck-card--3 {
-    --x-closed: 7%; --r-closed: 7deg;
-    --x-open: var(--deck-spread); --r-open: 10deg; --s-open: 0.44;
-    z-index: 2;
-    filter: brightness(0.95);
-}
-
-/* Open state, driven by pointer hover, keyboard focus or the tap toggle. */
-.problem-deck:hover .deck-card,
-.problem-deck:focus-within .deck-card,
-.problem-deck.is-open .deck-card {
-    transform: translateX(var(--x-open)) rotate(var(--r-open)) scale(var(--s-open, 1));
-    filter: none;
-}
-
-.deck-card:focus-visible {
+/* Keyboard access: the hidden radio still receives focus. */
+.journey-wheel input[type="radio"]:focus-visible + label {
     outline: 2px solid var(--color-accent);
     outline-offset: 3px;
+    border-radius: 50%;
+}
+
+/* Title + description sit at the centre, revealed for the checked item. */
+.journey-wheel .cards > li > h2,
+.journey-wheel .cards > li > p {
+    position: absolute;
+    left: 50%;
+    text-align: center;
+    transform: translate(-50%, 0);
+    transform-origin: center;
+}
+
+.journey-wheel .cards > li > h2 {
+    top: var(--title-top);
+    font-size: 1.15rem;
+    opacity: var(--title-opacity, 0);
+    translate: 0 var(--title-offset-y);
+    transition: var(--duration) ease-in-out var(--title-delay, 0ms);
+}
+
+.journey-wheel .cards > li > p {
+    /* Top edge sits a fixed gap (~4 text lines) below the stage heading,
+       keeping the block in the upper-middle of the circle. */
+    top: var(--info-top);
+    margin: 0 auto;
+    width: var(--info-width);
+    z-index: 2;
+    font-size: 0.92rem;
+    color: var(--color-muted);
+    text-align: center;
+    text-wrap: pretty;
+    opacity: var(--info-opacity, 0);
+    translate: 0 var(--info-offset-y);
+    transition: var(--duration) ease-in-out var(--info-delay, 0ms);
+}
+
+/* Checked item: recolour dot, draw the connector, reveal title + info. */
+.journey-wheel li:has(input:checked) {
+    --label-color: var(--label-color-hover);
+    --label-line-h: var(--label-line-h-current);
+    --label-line-delay: calc(var(--duration) * 2);
+
+    --title-opacity: 1;
+    --title-offset-y: 0;
+    --title-delay: calc(var(--duration) * 3);
+
+    --info-opacity: 1;
+    --info-offset-y: 0;
+    --info-delay: calc(var(--duration) * 4);
+}
+
+/* Rotate the ring so the checked stage sits on top. */
+.journey-wheel .cards:has(input:checked) {
+    transform: rotate(calc(-1 * (var(--index) * var(--full-circle, 360deg) / var(--items))));
+}
+
+.journey-wheel .cards:has(li:nth-child(1) > input:checked) { --index: 0; }
+.journey-wheel .cards:has(li:nth-child(2) > input:checked) { --index: 1; }
+.journey-wheel .cards:has(li:nth-child(3) > input:checked) { --index: 2; }
+.journey-wheel .cards:has(li:nth-child(4) > input:checked) { --index: 3; }
+.journey-wheel .cards:has(li:nth-child(5) > input:checked) { --index: 4; }
+.journey-wheel .cards:has(li:nth-child(6) > input:checked) { --index: 5; }
+
+.journey-cta {
+    margin-top: 8px;
+}
+
+/* ---------- 11c. Service ring: rotating 3D cards (home) ----------
+   Ten service tiles orbit a shared centre; brightness dips as each
+   card swings to the back. Hover pauses the whole ring. */
+.care-ring-stage {
+    position: relative;
+    height: 430px;
+    display: grid;
+    place-items: center;
+    overflow: hidden;
+}
+
+.card-3d {
+    --ring-tile: 190px;
+    --ring-radius: 320px;
+
+    position: relative;
+    width: 400px;
+    height: 200px;
+    transform-style: preserve-3d;
+    animation: autoRun3d 20s linear infinite;
+    will-change: transform;
+}
+
+.card-3d > div {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: var(--ring-tile);
+    height: 170px;
+    padding: 16px;
+    display: grid;
+    align-content: center;
+    gap: 6px;
+    background: var(--color-surface);
+    border: 1px solid rgba(18, 50, 67, 0.12);
+    border-radius: 0.75rem;
+    box-shadow: 0 18px 36px -18px rgba(18, 50, 67, 0.25);
+    transform: translate(-50%, -50%) rotateY(var(--ring-angle, 0deg)) translateZ(var(--ring-radius));
+    transform-origin: center center;
+    animation: animateBrightness 20s linear infinite;
+    will-change: transform, filter;
+}
+
+.card-3d h3 {
+    font-size: 1rem;
+    margin: 0;
+}
+
+.card-3d p {
+    font-size: 0.82rem;
+    margin: 0;
+    color: var(--color-muted);
+}
+
+.card-3d .ring-hint {
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--color-accent);
+}
+
+.card-3d:hover {
+    animation-play-state: paused !important;
+}
+
+.card-3d:hover > div {
+    animation-play-state: paused !important;
+}
+
+/* One orbit = 360 degrees, ten tiles 36 degrees apart. */
+.card-3d > div:nth-child(1)  { --ring-angle: 0deg;   animation-delay: -0s; }
+.card-3d > div:nth-child(2)  { --ring-angle: 36deg;  animation-delay: -2s; }
+.card-3d > div:nth-child(3)  { --ring-angle: 72deg;  animation-delay: -4s; }
+.card-3d > div:nth-child(4)  { --ring-angle: 108deg; animation-delay: -6s; }
+.card-3d > div:nth-child(5)  { --ring-angle: 144deg; animation-delay: -8s; }
+.card-3d > div:nth-child(6)  { --ring-angle: 180deg; animation-delay: -10s; }
+.card-3d > div:nth-child(7)  { --ring-angle: 216deg; animation-delay: -12s; }
+.card-3d > div:nth-child(8)  { --ring-angle: 252deg; animation-delay: -14s; }
+.card-3d > div:nth-child(9)  { --ring-angle: 288deg; animation-delay: -16s; }
+.card-3d > div:nth-child(10) { --ring-angle: 324deg; animation-delay: -18s; }
+
+@keyframes autoRun3d {
+    from {
+        transform: perspective(800px) rotateY(-360deg);
+    }
+    to {
+        transform: perspective(800px) rotateY(0deg);
+    }
+}
+
+/* Cards dim as they swing behind the ring (softened for white cards). */
+@keyframes animateBrightness {
+    10% {
+        filter: brightness(1);
+    }
+    50% {
+        filter: brightness(0.35);
+    }
+    90% {
+        filter: brightness(1);
+    }
 }
 
 /* ---------- 12. Fabric grid & misc pages ---------- */

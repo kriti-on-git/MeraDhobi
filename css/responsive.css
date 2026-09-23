@@ -56,6 +56,12 @@
 
 /* ---------- ≤768px: tablet / mobile ---------- */
 @media (max-width: 768px) {
+    html {
+        /* Soft snap on mobile so tall stacked cards scroll comfortably */
+        scroll-snap-type: y proximity;
+        scroll-padding-top: var(--nav-height);
+    }
+    
     :root {
         --nav-height: 64px;
         --nav-height-compact: 58px;
@@ -135,10 +141,36 @@
         margin-top: 26px;
     }
 
-    /* Tighter fan and a squarer deck keep the spread on-screen */
-    .problem-deck {
-        --deck-spread: 34%;
-        aspect-ratio: 1 / 1;
+    /* Photo fills its column width on narrow screens */
+    .photo-frame img,
+    .route-photo img {
+        aspect-ratio: 16 / 10;
+    }
+
+    /* Smaller ring radius keeps tiles inside the viewport */
+    .card-3d {
+        --ring-tile: 170px;
+        --ring-radius: 260px;
+    }
+
+    /* Compact wheel: smaller ring and tighter centre text */
+    .journey-wheel {
+        --radius: min(60vw, 260px);
+        --label-size: 32px;
+        --label-dot-size: 10px;
+        --label-line-h-current: 1.4rem;
+        --title-top: 1.9rem;
+        --info-top: 8rem;
+        --info-width: min(78%, 360px);
+    }
+
+    .journey-wheel .cards > li > p {
+        font-size: 0.82rem;
+    }
+
+    /* Estimator heading stacks above its photo on narrow screens */
+    .estimator-head {
+        grid-template-columns: 1fr;
     }
 
     .grid-2,
@@ -176,12 +208,6 @@
     .footer-bottom {
         justify-content: center;
         text-align: center;
-    }
-
-    /* Route map keeps labels inside on narrow screens */
-    .route-label {
-        font-size: 0.74rem;
-        padding: 8px 10px;
     }
 
     .roadmap-item {
@@ -231,9 +257,5 @@
 
     .card {
         padding: 24px;
-    }
-
-    .route-label:nth-of-type(3) {
-        display: none; /* avoid label crowding on tiny screens */
     }
 }

@@ -46,13 +46,14 @@
     <main id="main-content">
         <!-- Demo rate card -->
         <section class="section">
-            <div class="container">
-                <div class="section-head reveal">
-                    <span class="eyebrow">Pricing</span>
-                    <h1 class="section-title">Demo rate card<span class="display-serif">, per item.</span></h1>
-                </div>
+            <div class="container grid-2">
+                <div>
+                    <div class="section-head reveal" style="margin-bottom:32px;">
+                        <span class="eyebrow">Pricing</span>
+                        <h1 class="section-title" style="font-size:clamp(2rem,3.4vw,2.9rem);">Demo rate card<span class="display-serif">, per item.</span></h1>
+                    </div>
 
-                <div class="price-table-wrap reveal">
+                    <div class="price-table-wrap reveal">
                     <table class="price-table">
                         <thead>
                             <tr>
@@ -113,17 +114,29 @@
                             </tr>
                         </tbody>
                     </table>
+                    </div>
+                    <p class="form-note reveal" style="margin-top:14px;">Sample values in ₹, per piece. N/A means not offered.</p>
                 </div>
-                <p class="form-note reveal" style="margin-top:14px;">Sample values in ₹, per piece. N/A means not offered.</p>
+
+                <div class="photo-frame reveal" data-parallax="0.05">
+                    <img src="assets/images/price1.jpg" alt="Freshly cleaned garments pressed and ready to deliver" loading="lazy">
+                </div>
             </div>
         </section>
 
         <!-- Interactive estimator -->
         <section class="section section-tint" id="estimator">
             <div class="container">
-                <div class="section-head reveal">
-                    <span class="eyebrow">Price estimator</span>
-                    <h2 class="section-title">Do the maths <span class="display-serif">in two clicks.</span></h2>
+                <div class="estimator-head">
+                    <div class="section-head reveal" style="margin-bottom:0;">
+                        <span class="eyebrow">Price estimator</span>
+                        <h2 class="section-title">Do the maths <span class="display-serif">in two clicks.</span></h2>
+                        <p class="lead">Slide the quantity, swap the service, and watch the estimate update instantly. Demo rates only.</p>
+                    </div>
+
+                    <div class="calc-visual photo-frame reveal" data-parallax="0.05">
+                        <img src="assets/images/price.jpg" alt="A clear price list beside neatly folded clothes" loading="lazy">
+                    </div>
                 </div>
 
                 <div class="calc-shell reveal">

@@ -44,18 +44,6 @@
     </header>
 
     <main id="main-content">
-        <section class="page-hero">
-            <div class="backdrop" aria-hidden="true">
-                <span class="wash" style="width:420px;height:420px;top:-140px;right:-60px;"></span>
-                <span class="ring" style="width:300px;height:300px;bottom:-100px;left:-80px;"></span>
-            </div>
-            <div class="container reveal">
-                <span class="eyebrow">About MeraDhobi</span>
-                <h1>Laundry is <span class="display-serif text-accent">clothing care,</span><br>not just washing.</h1>
-                <p class="lead">A fictional brand exploring calm, careful doorstep laundry.</p>
-            </div>
-        </section>
-
         <!-- Brand story: editorial two-column -->
         <section class="section" style="padding-top:24px;">
             <div class="container grid-2">
@@ -65,13 +53,9 @@
                     <p>Because a silk saree and a gym towel should never share water. Every order is sorted, washed and finished per fabric.</p>
                 </div>
 
-                <!-- Visual: CSS folded stack reused as brand motif -->
-                <div class="folded-stack reveal" data-parallax="0.06" aria-hidden="true">
-                    <div class="fold-layer fold-layer-4"></div>
-                    <div class="fold-layer fold-layer-3"></div>
-                    <div class="fold-layer fold-layer-2"></div>
-                    <div class="fold-layer fold-layer-1"></div>
-                    <p class="stack-caption">Fabric · first · always</p>
+                <!-- Visual: brand photo replacing the CSS folded stack -->
+                <div class="photo-frame reveal" data-parallax="0.06">
+                    <img src="assets/images/last.jpg" alt="Fresh laundry folded and sorted by fabric" loading="lazy">
                 </div>
             </div>
         </section>
@@ -83,47 +67,50 @@
                     <span class="eyebrow">What we optimise for</span>
                     <h2 class="section-title">What do we <span class="display-serif">optimise for?</span></h2>
                 </div>
-                <div class="grid-4 reveal-stagger">
-                    <div class="card reveal-child">
-                        <span class="card-icon">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"/><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/></svg>
+                <!-- Plain cards with a light hover lift; detail text is
+                     always visible, no deck interaction. -->
+                <div class="grid-4 value-cards reveal-stagger">
+                    <article class="card value-card reveal-child">
+                        <span class="card-media">
+                            <img src="https://images.pexels.com/photos/8774419/pexels-photo-8774419.jpeg?auto=compress&cs=tinysrgb&w=640" alt="Clothes tumbling in a washing machine drum" loading="lazy">
                         </span>
                         <h3>Fabric first</h3>
-                        <p>Programmes chosen per fabric.</p>
-                    </div>
-                    <div class="card reveal-child">
-                        <span class="card-icon">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+                        <p>Programmes chosen per fabric, never one harsh cycle for everything.</p>
+                    </article>
+                    <article class="card value-card reveal-child">
+                        <span class="card-media">
+                            <img src="https://images.pexels.com/photos/7363198/pexels-photo-7363198.jpeg?auto=compress&cs=tinysrgb&w=640" alt="A delivery rider on a scooter, right on time" loading="lazy">
                         </span>
                         <h3>Your time back</h3>
-                        <p>One-hour doorstep slots.</p>
-                    </div>
-                    <div class="card reveal-child">
-                        <span class="card-icon">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="8" height="4" x="8" y="2" rx="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><path d="m9 14 2 2 4-4"/></svg>
+                        <p>One-hour doorstep slots, seven days a week.</p>
+                    </article>
+                    <article class="card value-card reveal-child">
+                        <span class="card-media">
+                            <img src="https://images.pexels.com/photos/33237847/pexels-photo-33237847.jpeg?auto=compress&cs=tinysrgb&w=640" alt="A laundry basket of clothes ready for careful sorting" loading="lazy">
                         </span>
                         <h3>Careful sorting</h3>
-                        <p>Inspected and tagged before cleaning.</p>
-                    </div>
-                    <div class="card reveal-child">
-                        <span class="card-icon">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 8h6a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-1"/><path d="M2 8h14v9a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V8z"/><circle cx="7" cy="19" r="2"/><path d="M13 19h4"/><circle cx="17" cy="19" r="2"/><path d="M6 4v4"/><path d="M10 4v4"/></svg>
+                        <p>Inspected and tagged before the first drop of water.</p>
+                    </article>
+                    <article class="card value-card reveal-child">
+                        <span class="card-media">
+                            <img src="https://images.pexels.com/photos/5900225/pexels-photo-5900225.jpeg?auto=compress&cs=tinysrgb&w=640" alt="A blue calculator tallying a clear, honest price" loading="lazy">
                         </span>
                         <h3>Clear pricing</h3>
-                        <p>Demo rates published up front.</p>
-                    </div>
+                        <p>Demo rates published up front. No surprises at delivery.</p>
+                    </article>
                 </div>
             </div>
         </section>
 
         <!-- Experience pillars -->
         <section class="section">
-            <div class="container">
-                <div class="section-head reveal">
-                    <span class="eyebrow">The experience</span>
-                    <h2 class="section-title">What does MeraDhobi <span class="display-serif">feel like?</span></h2>
-                </div>
-                <div class="value-list reveal" style="max-width:760px;">
+            <div class="container grid-2">
+                <div>
+                    <div class="section-head reveal" style="margin-bottom:32px;">
+                        <span class="eyebrow">The experience</span>
+                        <h2 class="section-title">What does MeraDhobi <span class="display-serif">feel like?</span></h2>
+                    </div>
+                    <div class="value-list reveal">
                     <div class="value-row">
                         <span class="value-icon">
                             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 22V12h6v10"/></svg>
@@ -160,16 +147,27 @@
                             <p>Scheduling, tagging and routing stay in the background.</p>
                         </div>
                     </div>
+                    </div>
+                </div>
+
+                <div class="photo-frame reveal" data-parallax="0.05">
+                    <img src="assets/images/what-does-md-feel-like.jpg" alt="Neatly pressed clothes returned on hangers at the doorstep" loading="lazy">
                 </div>
             </div>
         </section>
 
-        <!-- Editorial note -->
+        <!-- The name: editorial two-column -->
         <section class="section section-deep">
-            <div class="container-narrow center reveal">
-                <span class="eyebrow" style="color:var(--color-mint);justify-content:center;">The name</span>
-                <h2 style="font-size:clamp(1.8rem,3.5vw,2.6rem);">What's in <span class="display-serif">the name?</span></h2>
-                <p style="max-width:560px;margin:14px auto 0;">“Mera” means mine. “Dhobi” means washerman. A demo brand, not a commercial claim.</p>
+            <div class="container grid-2">
+                <div class="reveal">
+                    <span class="eyebrow" style="color:var(--color-mint);">The name</span>
+                    <h2 style="font-size:clamp(1.8rem,3.5vw,2.6rem);">What's in <span class="display-serif">the name?</span></h2>
+                    <p style="max-width:560px;margin-top:14px;">“Mera” means mine. “Dhobi” means washerman. A demo brand, not a commercial claim.</p>
+                </div>
+
+                <div class="photo-frame reveal" data-parallax="0.05">
+                    <img src="assets/images/whats-in-name.jpg" alt="A dhobi's wash basin, the origin of the MeraDhobi name" loading="lazy">
+                </div>
             </div>
         </section>
 

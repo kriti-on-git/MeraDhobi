@@ -137,8 +137,17 @@
 @media (prefers-reduced-motion: reduce) {
     html {
         scroll-behavior: auto;
+        scroll-snap-type: none;
     }
-
+    
+    .hero,
+    .page-hero,
+    main > section,
+    .cta-band,
+    .site-footer {
+        scroll-snap-align: none;
+    }
+    
     *,
     *::before,
     *::after {
@@ -158,8 +167,32 @@
         animation: none;
     }
 
-    /* The auto-advance bar only communicates timing; drop it entirely. */
-    .hiw-progress {
-        display: none;
+    /* The journey wheel is user-driven (no autoplay), so it stays fully
+       usable with motion reduced; transitions simply become instant.
+       The service ring, however, spins on its own - lay it out as a
+       calm static grid instead. */
+    .card-3d {
+        animation: none;
+        transform: none;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        width: 100%;
+        max-width: 720px;
+        height: auto;
+        justify-content: center;
+    }
+
+    .card-3d > div {
+        position: static;
+        transform: none;
+        animation: none;
+        width: 180px;
+        height: auto;
+    }
+
+    .care-ring-stage {
+        height: auto;
+        overflow: visible;
     }
 }

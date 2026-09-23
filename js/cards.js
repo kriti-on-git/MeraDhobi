@@ -3,6 +3,8 @@
    1. Service cards expand on click; siblings stay compact.
    2. Fabric cards reveal a care tip; one open at a time.
    3. FAQ accordion; opening one closes the others.
+   4. Content-photo 3D tilt that follows the pointer.
+   5. Value deck (about): tap to fan open/close.
    All three use the same accessible pattern: real <button>
    controls + aria-expanded + CSS class toggling.
    ============================================================ */
@@ -68,29 +70,40 @@
     /* Service cards: click to reveal turnaround + garment list. */
     setupTogglingCards(".service-card", "active", ".services-grid");
 
-    /* Fabric cards: click to reveal a care tip. */
-    setupTogglingCards(".fabric-card", "active", ".fabric-grid");
+    /* Fabric flip cards: click toggles the 3D flip (hover handles it on
+       pointer devices; this gives touch users the same reveal). */
+    document.querySelectorAll(".fabric-flip").forEach(function (card) {
+        card.setAttribute("aria-pressed", "false");
 
-    /* ---- Photo deck (home page problem section) ---------------
-       The fan opens on hover/focus through CSS; this class toggle gives
-       touch devices an explicit open/close and lets Escape fold the deck. */
-    const problemDeck = document.querySelector(".problem-deck");
-    if (problemDeck) {
-        problemDeck.querySelectorAll(".deck-card").forEach(function (card) {
-            card.addEventListener("click", function () {
-                problemDeck.classList.toggle("is-open");
+        card.addEventListener("click", function () {
+            const flipped = card.classList.toggle("flipped");
+            card.setAttribute("aria-pressed", String(flipped));
+        });
+    });
+
+    /* ---- Content photos: pointer-follow 3D tilt (all pages) ----
+       CSS owns the resting state and the hover fallback (fixed tilt),
+       this handler refines the tilt so each image leans toward the
+       cursor. Guarded for reduced motion and touch-only devices. */
+    if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches &&
+        window.matchMedia("(hover: hover) and (pointer: fine)").matches) {
+        const MAX_TILT = 6; // degrees
+
+        document.querySelectorAll(".photo-frame img, .route-photo img").forEach(function (photo) {
+            photo.addEventListener("mousemove", function (event) {
+                const rect = photo.getBoundingClientRect();
+                const relativeX = (event.clientX - rect.left) / rect.width - 0.5;
+                const relativeY = (event.clientY - rect.top) / rect.height - 0.5;
+
+                photo.style.setProperty("--tilt-y", (relativeX * MAX_TILT * 2).toFixed(2) + "deg");
+                photo.style.setProperty("--tilt-x", (-relativeY * MAX_TILT * 2).toFixed(2) + "deg");
             });
-        });
 
-        // A tap anywhere outside the deck folds it back.
-        document.addEventListener("click", function (event) {
-            if (!problemDeck.contains(event.target)) {
-                problemDeck.classList.remove("is-open");
-            }
-        });
-
-        document.addEventListener("keydown", function (event) {
-            if (event.key === "Escape") problemDeck.classList.remove("is-open");
+            photo.addEventListener("mouseleave", function () {
+                // Return to the fixed fallback tilt while still hovered via CSS.
+                photo.style.removeProperty("--tilt-y");
+                photo.style.removeProperty("--tilt-x");
+            });
         });
     }
 

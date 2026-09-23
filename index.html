@@ -151,22 +151,8 @@
                     </ul>
                 </div>
 
-                <!-- Photo deck: three real photos stacked like a hand of cards
-                     that fan open on hover, keyboard focus or tap.
-                     Images: Flickr via Openverse, CC BY / CC BY-SA (see README). -->
-                <div class="problem-deck reveal" data-parallax="0.06">
-                    <button class="deck-card deck-card--1" type="button">
-                        <img src="https://live.staticflickr.com/5451/9486992454_55ec32b0ec_b.jpg" alt="Clothes drying on a line outdoors" loading="lazy">
-                        <span class="deck-caption">Air-dried</span>
-                    </button>
-                    <button class="deck-card deck-card--2" type="button">
-                        <img src="https://live.staticflickr.com/2720/4425756825_5b6a40b31c_b.jpg" alt="A stack of freshly folded laundry on a table" loading="lazy">
-                        <span class="deck-caption">Folded with care</span>
-                    </button>
-                    <button class="deck-card deck-card--3" type="button">
-                        <img src="https://live.staticflickr.com/5570/14772829321_9f84f5952c.jpg" alt="Neatly folded fabric bundles at a laundry" loading="lazy">
-                        <span class="deck-caption">Sorted by fabric</span>
-                    </button>
+                <div class="photo-frame reveal" data-parallax="0.06">
+                    <img src="assets/images/the-ev-prob.jpg" alt="Laundry piling up, the everyday problem MeraDhobi solves" loading="lazy">
                 </div>
             </div>
         </section>
@@ -180,62 +166,52 @@
                     <p class="lead" style="max-width:560px;margin-inline:auto;">One bag at your door becomes a drawer of fresh clothes two days later. Here is the whole journey, handled for you.</p>
                 </div>
 
-                <!-- Compact roadmap strip; roadmap.js auto-advances it -->
-                <div class="hiw-strip-section reveal-stagger">
-                    <div class="hiw-strip" role="tablist" aria-label="Laundry journey stages">
-                        <button class="hiw-step reveal-child" data-stage="1" data-title="Book">
-                            <span class="step-dot" aria-hidden="true"></span>
-                            <span class="step-num">01</span>
-                            <span class="step-title">Book</span>
-                            <span class="step-desc">Pick a slot in under a minute.</span>
-                        </button>
-                        <button class="hiw-step reveal-child" data-stage="2" data-title="Pickup">
-                            <span class="step-dot" aria-hidden="true"></span>
-                            <span class="step-num">02</span>
-                            <span class="step-title">Pickup</span>
-                            <span class="step-desc">We collect from your doorstep.</span>
-                        </button>
-                        <button class="hiw-step reveal-child" data-stage="3" data-title="Sort &amp; Inspect">
-                            <span class="step-dot" aria-hidden="true"></span>
-                            <span class="step-num">03</span>
-                            <span class="step-title">Sort &amp; Inspect</span>
-                            <span class="step-desc">Tagged, checked, grouped.</span>
-                        </button>
-                        <button class="hiw-step reveal-child" data-stage="4" data-title="Clean">
-                            <span class="step-dot" aria-hidden="true"></span>
-                            <span class="step-num">04</span>
-                            <span class="step-title">Clean</span>
-                            <span class="step-desc">Programme set per fabric.</span>
-                        </button>
-                        <button class="hiw-step reveal-child" data-stage="5" data-title="Quality Check">
-                            <span class="step-dot" aria-hidden="true"></span>
-                            <span class="step-num">05</span>
-                            <span class="step-title">Quality Check</span>
-                            <span class="step-desc">Inspected piece by piece.</span>
-                        </button>
-                        <button class="hiw-step reveal-child" data-stage="6" data-title="Deliver">
-                            <span class="step-dot" aria-hidden="true"></span>
-                            <span class="step-num">06</span>
-                            <span class="step-title">Deliver</span>
-                            <span class="step-desc">Back at your door, folded.</span>
-                        </button>
-                    </div>
+                <!-- Journey wheel: a rotating radio-driven timeline. Picking a
+                     stage dot rotates the ring so that stage sits on top and
+                     reveals its title + description. -->
+                <div class="journey-wheel reveal" aria-label="The six-stage MeraDhobi journey">
+                    <ol class="cards" style="--items: 6;">
+                        <li style="--i: 0;">
+                            <input type="radio" name="journey-stage" id="journey-stage-1" checked>
+                            <label for="journey-stage-1">01</label>
+                            <h2>Book</h2>
+                            <p>Choose your services, pick a time slot. Booking takes under a minute, no account needed for a demo run.</p>
+                        </li>
+                        <li style="--i: 1;">
+                            <input type="radio" name="journey-stage" id="journey-stage-2">
+                            <label for="journey-stage-2">02</label>
+                            <h2>Pickup</h2>
+                            <p>A MeraDhobi rider collects your bag from your doorstep in the slot you chose. Everything is counted at the door.</p>
+                        </li>
+                        <li style="--i: 2;">
+                            <input type="radio" name="journey-stage" id="journey-stage-3">
+                            <label for="journey-stage-3">03</label>
+                            <h2>Sort &amp; Inspect</h2>
+                            <p>Every garment is inspected, tagged and grouped by fabric and colour before anything touches water.</p>
+                        </li>
+                        <li style="--i: 3;">
+                            <input type="radio" name="journey-stage" id="journey-stage-4">
+                            <label for="journey-stage-4">04</label>
+                            <h2>Clean</h2>
+                            <p>Temperature, detergent and cycle length matched to each fabric, from sturdy cottons to fragile silks.</p>
+                        </li>
+                        <li style="--i: 4;">
+                            <input type="radio" name="journey-stage" id="journey-stage-5">
+                            <label for="journey-stage-5">05</label>
+                            <h2>Quality Check</h2>
+                            <p>Fresh loads are steamed, pressed and inspected piece by piece against a finishing checklist.</p>
+                        </li>
+                        <li style="--i: 5;">
+                            <input type="radio" name="journey-stage" id="journey-stage-6">
+                            <label for="journey-stage-6">06</label>
+                            <h2>Deliver</h2>
+                            <p>Your clothes return folded, protected and on time, usually within 48 hours of pickup.</p>
+                        </li>
+                    </ol>
+                </div>
 
-                    <!-- Auto-advance indicator; roadmap.js restarts the fill on
-                         every step and tints it with the active stage colour -->
-                    <div class="hiw-progress" aria-hidden="true"><span></span></div>
-
-                    <div class="hiw-detail" aria-live="polite">
-                        <span class="detail-icon"></span>
-                        <div>
-                            <h3 data-detail-title>Book</h3>
-                            <p data-detail-text>Choose your services, pick a time slot, and we handle the rest.</p>
-                        </div>
-                    </div>
-
-                    <div class="center" style="margin-top:26px;">
-                        <a class="text-accent" href="how-it-works.html" style="font-weight:700;">See the full journey →</a>
-                    </div>
+                <div class="journey-cta center reveal">
+                    <a class="text-accent" href="how-it-works.html" style="font-weight:700;">See the full journey →</a>
                 </div>
             </div>
         </section>
@@ -248,117 +224,63 @@
                     <h2 class="section-title">Care for every fabric<br>you own<span class="display-serif">, done properly.</span></h2>
                 </div>
 
-                <div class="grid-3 services-grid reveal-stagger">
-                    <article class="card service-card reveal-child" tabindex="0">
-                        <span class="card-icon">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.38 3.46 16 2a4 4 0 0 1-8 0L3.62 3.46a2 2 0 0 0-1.34 2.23l.58 3.47a1 1 0 0 0 .99.84H6v10c0 1.1.9 2 2 2h8a2 2 0 0 0 2-2V10h2.15a1 1 0 0 0 .99-.84l.58-3.47a2 2 0 0 0-1.34-2.23z"/></svg>
-                        </span>
-                        <h3>Wash &amp; Fold</h3>
-                        <p>Everyday clothes washed in fabric-appropriate cycles and returned neatly folded, drawer-ready.</p>
-                        <div class="card-details">
-                            <div>
-                                <ul>
-                                    <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Sorted by colour and fabric before washing</li>
-                                    <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Mild, skin-friendly detergents</li>
-                                    <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Turnaround: about 48 hours</li>
-                                </ul>
-                                <span class="card-hint">Everyday wear · Tees · Nightsuits</span>
-                            </div>
+                <!-- Rotating 3D card ring; pauses on hover. -->
+                <div class="care-ring-stage reveal">
+                    <div class="card-3d">
+                        <div>
+                            <h3>Wash &amp; Fold</h3>
+                            <p>Everyday clothes, fabric-appropriate cycles.</p>
+                            <span class="ring-hint">Everyday wear · Tees</span>
                         </div>
-                    </article>
-
-                    <article class="card service-card reveal-child" tabindex="0">
-                        <span class="card-icon">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/></svg>
-                        </span>
-                        <h3>Dry Cleaning</h3>
-                        <p>Solvent-based care for structured garments that must keep their shape, finish and colour.</p>
-                        <div class="card-details">
-                            <div>
-                                <ul>
-                                    <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Garments returned on hangers</li>
-                                    <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Collar, cuff and lining attention</li>
-                                    <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Turnaround: about 72 hours</li>
-                                </ul>
-                                <span class="card-hint">Suits · Blazers · Formal shirts</span>
-                            </div>
+                        <div>
+                            <h3>Dry Cleaning</h3>
+                            <p>Solvent care for structured garments.</p>
+                            <span class="ring-hint">Suits · Blazers</span>
                         </div>
-                    </article>
-
-                    <article class="card service-card reveal-child" tabindex="0">
-                        <span class="card-icon">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 9h18v6a3 3 0 0 1-3 3H6a3 3 0 0 1-3-3Z"/><path d="M3 9V7a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v2"/><path d="M7 21v-3"/><path d="M17 21v-3"/></svg>
-                        </span>
-                        <h3>Steam Ironing</h3>
-                        <p>Temperature-controlled steam pressing that leaves crisp creases without shine or scorch marks.</p>
-                        <div class="card-details">
-                            <div>
-                                <ul>
-                                    <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Heat matched to each fabric type</li>
-                                    <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Crease-safe folding or hanging</li>
-                                    <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Turnaround: about 24 hours</li>
-                                </ul>
-                                <span class="card-hint">Shirts · Trousers · Uniforms</span>
-                            </div>
+                        <div>
+                            <h3>Steam Ironing</h3>
+                            <p>Crisp creases without shine or scorch.</p>
+                            <span class="ring-hint">Shirts · Uniforms</span>
                         </div>
-                    </article>
-
-                    <article class="card service-card reveal-child" tabindex="0">
-                        <span class="card-icon">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22a7 7 0 0 0 7-7c0-2-1-3.9-3-5.5s-3.5-4-4-6.5c-.5 2.5-2 4.9-4 6.5C6 11.1 5 13 5 15a7 7 0 0 0 7 7z"/></svg>
-                        </span>
-                        <h3>Stain Treatment</h3>
-                        <p>Individual stain assessment (tannin, oil, protein or ink), then targeted pre-treatment.</p>
-                        <div class="card-details">
-                            <div>
-                                <ul>
-                                    <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Stain identified before any wash</li>
-                                    <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Fabric-safe spot removers</li>
-                                    <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Turnaround: with your wash order</li>
-                                </ul>
-                                <span class="card-hint">Curry · Coffee · Ink · Sweat</span>
-                            </div>
+                        <div>
+                            <h3>Stain Treatment</h3>
+                            <p>Stain identified, then targeted pre-treatment.</p>
+                            <span class="ring-hint">Curry · Ink · Coffee</span>
                         </div>
-                    </article>
-
-                    <article class="card service-card reveal-child" tabindex="0">
-                        <span class="card-icon">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12.5 22 18 15.5 16 10l3-3-2-2-3 3-5.5-.5L3 13l4 1.5L9.5 19Z"/><path d="M4 20c1.5-1.5 3-1.5 4.5 0"/></svg>
-                        </span>
-                        <h3>Delicate Fabric Care</h3>
-                        <p>Hand-wash programmes and protective mesh bags for silk, lace, chiffon and embroidered pieces.</p>
-                        <div class="card-details">
-                            <div>
-                                <ul>
-                                    <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Cold water, minimal agitation</li>
-                                    <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Air-dried away from direct sun</li>
-                                    <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Turnaround: about 72 hours</li>
-                                </ul>
-                                <span class="card-hint">Silk · Lace · Chiffon · Embroidery</span>
-                            </div>
+                        <div>
+                            <h3>Delicate Care</h3>
+                            <p>Hand-wash programmes and mesh bags.</p>
+                            <span class="ring-hint">Silk · Lace · Chiffon</span>
                         </div>
-                    </article>
-
-                    <article class="card service-card reveal-child" tabindex="0">
-                        <span class="card-icon">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/></svg>
-                        </span>
-                        <h3>Express Laundry</h3>
-                        <p>Same-day wash &amp; fold for last-minute needs: in by morning, back by evening.</p>
-                        <div class="card-details">
-                            <div>
-                                <ul>
-                                    <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Dedicated fast-track load</li>
-                                    <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Pickup slots from 8 AM</li>
-                                    <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Turnaround: same day, by 8 PM</li>
-                                </ul>
-                                <span class="card-hint">Meetings · Travel · Emergencies</span>
-                            </div>
+                        <div>
+                            <h3>Express Laundry</h3>
+                            <p>In by morning, back by evening.</p>
+                            <span class="ring-hint">Same-day by 8 PM</span>
                         </div>
-                    </article>
+                        <div>
+                            <h3>Anti-bacterial Rinse</h3>
+                            <p>A hygienic finish on every load.</p>
+                            <span class="ring-hint">Add-on</span>
+                        </div>
+                        <div>
+                            <h3>Fabric Softener</h3>
+                            <p>Softer hand-feel, gentle fragrance.</p>
+                            <span class="ring-hint">Add-on</span>
+                        </div>
+                        <div>
+                            <h3>Custom Folding</h3>
+                            <p>Drawer-ready folds, your way.</p>
+                            <span class="ring-hint">Add-on</span>
+                        </div>
+                        <div>
+                            <h3>Duvet &amp; Blankets</h3>
+                            <p>Bulkier loads, handled with care.</p>
+                            <span class="ring-hint">Bedding</span>
+                        </div>
+                    </div>
                 </div>
 
-                <p class="center form-note reveal" style="margin-top:28px;">Tap a card to see what is included. Full details on the <a href="services.html">services page</a>.</p>
+                <p class="center form-note reveal" style="margin-top:28px;">Hover to pause the ring. Full details on the <a href="services.html">services page</a>.</p>
             </div>
         </section>
 
@@ -370,105 +292,89 @@
                     <h2 class="section-title">Every fibre asks <span class="display-serif">for different care.</span></h2>
                 </div>
 
+                <!-- Flip cards: tap/click to flip and read the care note.
+                     Fibre photos via Pexels (free to use). -->
                 <div class="fabric-grid reveal-stagger">
-                    <button class="fabric-card reveal-child" aria-expanded="false">
-                        <span class="fabric-head">
-                            <span class="fabric-swatch" style="background:linear-gradient(135deg,#ffffff,#e9f2f5);"></span>
-                            <h3>Cotton</h3>
-                        </span>
-                        <span class="fabric-body">
-                            <p>Sturdy and breathable, but shrinks in hot washes.</p>
-                            <span class="fabric-tags"><span>Daily wear</span><span>Workwear</span></span>
-                        </span>
-                        <span class="fabric-tip">
-                            <span>
-                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/></svg>
-                                We wash cotton cool and press it slightly damp for a crisp finish.
+                    <button class="fabric-flip reveal-child" type="button">
+                        <span class="flip-inner">
+                            <span class="flip-face flip-front">
+                                <img src="https://anuprerna-bloomscorp.s3.ap-south-1.amazonaws.com/4U184LYQRDH3OOOTIX4OSJM2GCXY00841.jpg" alt="Raw cotton fibre" loading="lazy">
+                                <span class="flip-name">Cotton</span>
+                            </span>
+                            <span class="flip-face flip-back">
+                                <span class="flip-name">Cotton</span>
+                                <p>Sturdy and breathable, but shrinks in hot washes. We wash cotton cool and press it slightly damp for a crisp finish.</p>
+                                <span class="fabric-tags"><span>Daily wear</span><span>Workwear</span></span>
                             </span>
                         </span>
                     </button>
 
-                    <button class="fabric-card reveal-child" aria-expanded="false">
-                        <span class="fabric-head">
-                            <span class="fabric-swatch" style="background:linear-gradient(135deg,#fdf6ee,#f3e8d8);"></span>
-                            <h3>Silk</h3>
-                        </span>
-                        <span class="fabric-body">
-                            <p>Luxurious and fragile. Hates heat, sun and rough cycles.</p>
-                            <span class="fabric-tags"><span>Sarees</span><span>Blouses</span></span>
-                        </span>
-                        <span class="fabric-tip">
-                            <span>
-                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/></svg>
-                                Silks get cold hand-wash treatment and shade drying only.
+                    <button class="fabric-flip reveal-child" type="button">
+                        <span class="flip-inner">
+                            <span class="flip-face flip-front">
+                                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQdm95YMYX_nfwkcRPsBJpwpS8gAnsxyxEyr6uiPBiOdQsjbE91OlPUyVO1&s=10" alt="Blue silk fabric with a soft sheen" loading="lazy">
+                                <span class="flip-name">Silk</span>
+                            </span>
+                            <span class="flip-face flip-back">
+                                <span class="flip-name">Silk</span>
+                                <p>Luxurious and fragile. Hates heat, sun and rough cycles. Silks get cold hand-wash treatment and shade drying only.</p>
+                                <span class="fabric-tags"><span>Sarees</span><span>Blouses</span></span>
                             </span>
                         </span>
                     </button>
 
-                    <button class="fabric-card reveal-child" aria-expanded="false">
-                        <span class="fabric-head">
-                            <span class="fabric-swatch" style="background:linear-gradient(135deg,#eef2f4,#d8e2e7);"></span>
-                            <h3>Wool</h3>
-                        </span>
-                        <span class="fabric-body">
-                            <p>Warm and resilient, but felts when agitated or wrung.</p>
-                            <span class="fabric-tags"><span>Sweaters</span><span>Shawls</span></span>
-                        </span>
-                        <span class="fabric-tip">
-                            <span>
-                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/></svg>
-                                Wool is washed with wool-safe detergent and dried flat to keep its shape.
+                    <button class="fabric-flip reveal-child" type="button">
+                        <span class="flip-inner">
+                            <span class="flip-face flip-front">
+                                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSXVyM7PWDUbz2B1n6MS2B5DudW8kmrsEMFWBOFTZIyoetI8X6gQmH7dJA&s=10" alt="Soft knitted wool texture" loading="lazy">
+                                <span class="flip-name">Wool</span>
+                            </span>
+                            <span class="flip-face flip-back">
+                                <span class="flip-name">Wool</span>
+                                <p>Warm and resilient, but felts when agitated or wrung. Wool is washed with wool-safe detergent and dried flat.</p>
+                                <span class="fabric-tags"><span>Sweaters</span><span>Shawls</span></span>
                             </span>
                         </span>
                     </button>
 
-                    <button class="fabric-card reveal-child" aria-expanded="false">
-                        <span class="fabric-head">
-                            <span class="fabric-swatch" style="background:linear-gradient(135deg,#dde9f2,#b9cfdd);"></span>
-                            <h3>Denim</h3>
-                        </span>
-                        <span class="fabric-body">
-                            <p>Tough on the outside, fades with every harsh wash.</p>
-                            <span class="fabric-tags"><span>Jeans</span><span>Jackets</span></span>
-                        </span>
-                        <span class="fabric-tip">
-                            <span>
-                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/></svg>
-                                Denim goes in cold, inside-out, and line-dries to protect its colour.
+                    <button class="fabric-flip reveal-child" type="button">
+                        <span class="flip-inner">
+                            <span class="flip-face flip-front">
+                                <img src="https://img.magnific.com/free-photo/fabric-textured-background_53876-65594.jpg?semt=ais_hybrid&w=740&q=80" alt="Blue denim texture close-up" loading="lazy">
+                                <span class="flip-name">Denim</span>
+                            </span>
+                            <span class="flip-face flip-back">
+                                <span class="flip-name">Denim</span>
+                                <p>Tough on the outside, fades with every harsh wash. Denim goes in cold, inside-out, and line-dries to protect its colour.</p>
+                                <span class="fabric-tags"><span>Jeans</span><span>Jackets</span></span>
                             </span>
                         </span>
                     </button>
 
-                    <button class="fabric-card reveal-child" aria-expanded="false">
-                        <span class="fabric-head">
-                            <span class="fabric-swatch" style="background:linear-gradient(135deg,#ffffff,#e4f1f5);"></span>
-                            <h3>Formal Wear</h3>
-                        </span>
-                        <span class="fabric-body">
-                            <p>Structured suits and blazers that must hold their line.</p>
-                            <span class="fabric-tags"><span>Suits</span><span>Blazers</span></span>
-                        </span>
-                        <span class="fabric-tip">
-                            <span>
-                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/></svg>
-                                Formals are dry-cleaned and returned on shaped hangers to keep the silhouette.
+                    <button class="fabric-flip reveal-child" type="button">
+                        <span class="flip-inner">
+                            <span class="flip-face flip-front">
+                                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTNdw1_KyNnLO6cWPwsBvU-B13Y3SRm80Dqcgs-vSljqw&s=10" alt="Formal suiting fabric in close-up" loading="lazy">
+                                <span class="flip-name">Formal Wear</span>
+                            </span>
+                            <span class="flip-face flip-back">
+                                <span class="flip-name">Formal Wear</span>
+                                <p>Structured suits and blazers that must hold their line. Formals are dry-cleaned and returned on shaped hangers.</p>
+                                <span class="fabric-tags"><span>Suits</span><span>Blazers</span></span>
                             </span>
                         </span>
                     </button>
 
-                    <button class="fabric-card reveal-child" aria-expanded="false">
-                        <span class="fabric-head">
-                            <span class="fabric-swatch" style="background:linear-gradient(135deg,#f5fbf9,#dcefe9);"></span>
-                            <h3>Delicates</h3>
-                        </span>
-                        <span class="fabric-body">
-                            <p>Lace, chiffon and embroidery that snag at a whisper.</p>
-                            <span class="fabric-tags"><span>Lingerie</span><span>Occasion wear</span></span>
-                        </span>
-                        <span class="fabric-tip">
-                            <span>
-                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/></svg>
-                                Delicates travel in mesh bags and skip the tumble entirely.
+                    <button class="fabric-flip reveal-child" type="button">
+                        <span class="flip-inner">
+                            <span class="flip-face flip-front">
+                                <img src="https://fabmyntra.com/cdn/shop/products/FM-SCI04319_3.jpg?v=1677244008&width=800" alt="Delicate lace fabric in soft blue" loading="lazy">
+                                <span class="flip-name">Delicates</span>
+                            </span>
+                            <span class="flip-face flip-back">
+                                <span class="flip-name">Delicates</span>
+                                <p>Lace, chiffon and embroidery that snag at a whisper. Delicates travel in mesh bags and skip the tumble entirely.</p>
+                                <span class="fabric-tags"><span>Lingerie</span><span>Occasion wear</span></span>
                             </span>
                         </span>
                     </button>
@@ -500,54 +406,8 @@
                     </ul>
                 </div>
 
-                <!-- Stylized SVG map with an animated delivery route -->
-                <div class="route-map reveal" data-parallax="0.05" role="img" aria-label="Stylized map showing a delivery route from home to the laundry hub">
-                    <svg viewBox="0 0 560 480" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-                        <!-- Street grid -->
-                        <g stroke="#b7d8e2" stroke-width="10" stroke-linecap="round" opacity="0.5">
-                            <line x1="-20" y1="110" x2="580" y2="80"/>
-                            <line x1="-20" y1="250" x2="580" y2="235"/>
-                            <line x1="-20" y1="390" x2="580" y2="370"/>
-                            <line x1="120" y1="-20" x2="150" y2="500"/>
-                            <line x1="300" y1="-20" x2="320" y2="500"/>
-                            <line x1="460" y1="-20" x2="470" y2="500"/>
-                        </g>
-                        <!-- Green pockets -->
-                        <g fill="#c4e0d6" opacity="0.7">
-                            <rect x="180" y="130" width="80" height="70" rx="14"/>
-                            <rect x="370" y="270" width="90" height="66" rx="14"/>
-                            <rect x="60" y="300" width="46" height="44" rx="10"/>
-                        </g>
-                        <!-- Water -->
-                        <path d="M0 452 Q140 420 300 448 T560 432 L560 480 L0 480 Z" fill="#bcdde9" opacity="0.8"/>
-                        <!-- Route -->
-                        <path id="routePath" d="M96 96 C 180 130, 150 240, 250 250 S 430 220, 452 330"
-                              fill="none" stroke="#ffffff" stroke-width="14" stroke-linecap="round"/>
-                        <path d="M96 96 C 180 130, 150 240, 250 250 S 430 220, 452 330"
-                              fill="none" stroke="#4E94A8" stroke-width="4" stroke-dasharray="10 12" stroke-linecap="round">
-                            <animate attributeName="stroke-dashoffset" from="44" to="0" dur="1.6s" repeatCount="indefinite"/>
-                        </path>
-                        <!-- Home node -->
-                        <circle cx="96" cy="96" r="26" fill="#ffffff"/>
-                        <circle cx="96" cy="96" r="26" fill="none" stroke="#4E94A8" stroke-width="3"/>
-                        <circle cx="96" cy="96" r="8" fill="#4E94A8"/>
-                        <!-- Hub node -->
-                        <circle cx="452" cy="330" r="26" fill="#ffffff"/>
-                        <circle cx="452" cy="330" r="26" fill="none" stroke="#123243" stroke-width="3"/>
-                        <path d="M452 318l8.7 3.8 2.1 9.4c.4 1.8-.7 3.6-2.4 4l-8.4 2-8.4-2c-1.7-.4-2.8-2.2-2.4-4l2.1-9.4z" fill="#123243"/>
-                    </svg>
-                    <span class="route-label" style="top:12%;left:8%;">
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 22V12h6v10"/></svg>
-                        Your doorstep<small>Pickup · 9:00 AM</small>
-                    </span>
-                    <span class="route-label" style="top:56%;right:6%;">
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 22h16"/><path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18"/><path d="M9 7h1"/><path d="M14 7h1"/><path d="M9 11h1"/><path d="M14 11h1"/><path d="M9 15h1"/><path d="M14 15h1"/></svg>
-                        MeraDhobi hub<small>Cleaning &amp; finishing</small>
-                    </span>
-                    <span class="route-label" style="bottom:8%;left:12%;">
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2"/><path d="M15 18h-5"/><path d="M19 18h2a1 1 0 0 0 1-1v-3.65a1 1 0 0 0-.22-.62l-3.48-4.35A1 1 0 0 0 17.52 8H14"/><circle cx="17" cy="18" r="2"/><circle cx="7" cy="18" r="2"/></svg>
-                        Return trip<small>Next evening · 6 to 8 PM</small>
-                    </span>
+                <div class="route-photo reveal" data-parallax="0.05">
+                    <img src="assets/images/we-come-2u.jpeg" alt="A MeraDhobi rider arriving at a doorstep to collect laundry" loading="lazy">
                 </div>
             </div>
         </section>

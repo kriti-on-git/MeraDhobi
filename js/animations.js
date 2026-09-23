@@ -100,23 +100,42 @@
         requestScrollEffects();
     }
 
-    /* ---- 3. Hero pointer parallax ---------------------------- */
-    // The pointer nudges only the foreground shirt; the deeper headline
-    // plane stays put, which sells the sense of depth. Offsets are written
-    // as custom properties so they compose with the scroll offsets in CSS.
+    /* ---- 3. Hero pointer parallax & anti-parallax ------------ */
+    // The shirt glides toward the cursor while the headline text behind it
+    // moves in the opposite direction (anti-parallax / counter-motion).
+    const parallaxText = document.querySelector(".parallax-text");
+
     if (hero && parallaxShirt && !prefersReducedMotion && window.matchMedia("(pointer: fine)").matches) {
         hero.addEventListener("mousemove", function (event) {
             const heroRect = hero.getBoundingClientRect();
             const relativeX = (event.clientX - heroRect.left) / heroRect.width - 0.5;
             const relativeY = (event.clientY - heroRect.top) / heroRect.height - 0.5;
 
-            parallaxShirt.style.setProperty("--shirt-mx", (relativeX * 24).toFixed(1) + "px");
-            parallaxShirt.style.setProperty("--shirt-my", (relativeY * 18).toFixed(1) + "px");
+            // Shirt moves with the pointer
+            const shirtX = relativeX * 32;
+            const shirtY = relativeY * 20;
+
+            // Text moves in opposite direction (inverted sign for anti-parallax)
+            const textX = -relativeX * 24;
+            const textY = -relativeY * 16;
+
+            parallaxShirt.style.setProperty("--shirt-mx", shirtX.toFixed(1) + "px");
+            parallaxShirt.style.setProperty("--shirt-my", shirtY.toFixed(1) + "px");
+
+            if (parallaxText) {
+                parallaxText.style.setProperty("--text-mx", textX.toFixed(1) + "px");
+                parallaxText.style.setProperty("--text-my", textY.toFixed(1) + "px");
+            }
         });
 
         hero.addEventListener("mouseleave", function () {
             parallaxShirt.style.setProperty("--shirt-mx", "0px");
             parallaxShirt.style.setProperty("--shirt-my", "0px");
+
+            if (parallaxText) {
+                parallaxText.style.setProperty("--text-mx", "0px");
+                parallaxText.style.setProperty("--text-my", "0px");
+            }
         });
     }
 })();

@@ -66,6 +66,34 @@
     transform: rotate(-6deg);
 }
 
+/* Card media: photo replaces the icon on service cards.
+   Sits above the title; the Add to Laundry button below is untouched. */
+.card-media {
+    display: block;
+    margin: 0 0 18px;
+}
+
+.card-media img {
+    display: block;
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    object-fit: cover;
+    border-radius: var(--radius-md);
+    border: 1px solid rgba(18, 50, 67, 0.08);
+    box-shadow: 0 14px 28px -18px rgba(18, 50, 67, 0.28),
+                0 4px 10px -6px rgba(18, 50, 67, 0.12);
+    transition: transform 0.45s cubic-bezier(0.22, 0.61, 0.36, 1),
+                box-shadow 0.45s ease;
+}
+
+.card:hover .card-media img,
+.card.active .card-media img,
+.service-card:focus-visible .card-media img {
+    transform: scale(1.03) translateY(-2px);
+    box-shadow: 0 20px 36px -18px rgba(18, 50, 67, 0.32),
+                0 6px 14px -6px rgba(18, 50, 67, 0.14);
+}
+
 .card.active .card-details {
     grid-template-rows: 1fr;
     opacity: 1;
@@ -347,20 +375,20 @@
 .price-table {
     width: 100%;
     border-collapse: collapse;
-    font-size: 0.95rem;
+    font-size: 0.85rem;
 }
 
 .price-table th,
 .price-table td {
     text-align: left;
-    padding: 14px 22px;
+    padding: 10px 18px;
     border-bottom: 1px solid rgba(18, 50, 67, 0.07);
 }
 
 .price-table thead th {
     background: var(--color-pale);
     color: var(--color-deep);
-    font-size: 0.8rem;
+    font-size: 0.72rem;
     letter-spacing: 0.08em;
     text-transform: uppercase;
 }
@@ -453,181 +481,64 @@
     font-size: 0.94rem;
 }
 
-/* ---------- 6. Route map visual (pure SVG, no API key) ---------- */
-.route-map {
+/* Photo frame: shared image treatment for content photos across pages.
+   Light shadow + soft border, with a gentle 3D tilt on pointer hover
+   (fallback tilt baked in; refined per-cursor by cards.js). */
+.photo-frame,
+.route-photo {
     position: relative;
-    background: linear-gradient(160deg, var(--color-pale) 0%, #eef7fa 60%, var(--color-background) 100%);
-    border: 1px solid rgba(120, 184, 200, 0.35);
     border-radius: var(--radius-lg);
-    overflow: hidden;
-    min-height: 420px;
 }
 
-.route-map > svg {
-    position: absolute;
-    inset: 0;
+.photo-frame img,
+.route-photo img {
+    display: block;
     width: 100%;
-    height: 100%;
-}
-
-/* Small icons inside labels stay inline-sized */
-.route-label svg {
-    flex-shrink: 0;
-}
-
-.route-label {
-    position: absolute;
-    background: var(--color-surface);
-    border: 1px solid rgba(120, 184, 200, 0.4);
-    box-shadow: var(--shadow-soft);
-    border-radius: 12px;
-    padding: 10px 14px;
-    font-size: 0.82rem;
-    font-weight: 600;
-    color: var(--color-deep);
-    display: flex;
-    align-items: center;
-    gap: 8px;
-}
-
-.route-label small {
-    display: block;
-    font-weight: 500;
-    color: var(--color-muted);
-}
-
-/* ---------- 7. How-it-works strip (compact 6-stage overview) ---------- */
-.hiw-strip {
-    display: grid;
-    grid-template-columns: repeat(6, 1fr);
-    gap: 12px;
-    counter-reset: stage;
-}
-
-.hiw-step {
-    position: relative;
-    background: var(--color-surface);
+    height: auto;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    border-radius: var(--radius-lg);
     border: 1px solid rgba(18, 50, 67, 0.08);
-    border-radius: var(--radius-md);
-    padding: 22px 18px;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    cursor: pointer;
-    text-align: left;
-    transition: transform 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
+    box-shadow: 0 24px 48px -20px rgba(18, 50, 67, 0.18),
+                0 8px 20px -12px rgba(18, 50, 67, 0.10);
+    transform-style: preserve-3d;
+    transition: transform 0.5s cubic-bezier(0.22, 0.61, 0.36, 1),
+                box-shadow 0.5s ease;
+    will-change: transform;
 }
 
-.hiw-step:hover {
-    transform: translateY(-3px);
-    box-shadow: var(--shadow-soft);
+/* 3D hover: lift + tilt toward the cursor. The tilt custom props are
+   refined by the pointer handler in cards.js; the fixed values are the
+   no-JS fallback. */
+@media (hover: hover) and (pointer: fine) {
+    .photo-frame img:hover,
+    .route-photo img:hover {
+        transform: perspective(1000px) rotateX(var(--tilt-x, 4deg)) rotateY(var(--tilt-y, -5deg)) translateZ(14px) scale(1.02);
+        box-shadow: 0 38px 64px -24px rgba(18, 50, 67, 0.26),
+                    0 12px 28px -12px rgba(18, 50, 67, 0.14);
+    }
 }
 
-/* Each stage owns a muted accent; the active state tints border + dot */
-.hiw-step[data-stage="1"] { --stage-color: var(--stage-1); }
-.hiw-step[data-stage="2"] { --stage-color: var(--stage-2); }
-.hiw-step[data-stage="3"] { --stage-color: var(--stage-3); }
-.hiw-step[data-stage="4"] { --stage-color: var(--stage-4); }
-.hiw-step[data-stage="5"] { --stage-color: var(--stage-5); }
-.hiw-step[data-stage="6"] { --stage-color: var(--stage-6); }
-
-.hiw-step .step-num {
-    font-family: var(--font-display);
-    font-style: italic;
-    font-size: 1.5rem;
-    color: var(--stage-color, var(--color-accent));
+.photo-frame img:focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 4px;
 }
 
-.hiw-step .step-title {
-    font-weight: 700;
-    color: var(--color-deep);
+/* Estimator: heading + photo side by side, calculator panel below. */
+.estimator-head {
+    display: grid;
+    grid-template-columns: 1fr 0.62fr;
+    gap: clamp(28px, 4vw, 56px);
+    align-items: center;
+    margin-bottom: clamp(36px, 5vw, 60px);
 }
 
-.hiw-step .step-desc {
-    font-size: 0.84rem;
-    color: var(--color-muted);
-    line-height: 1.5;
+.estimator-head .calc-visual img {
+    aspect-ratio: 4 / 3;
 }
 
-.hiw-step .step-dot {
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    background: var(--stage-color, var(--color-accent));
-    opacity: 0.5;
-    transition: opacity 0.35s ease, box-shadow 0.35s ease;
-}
-
-/* Active step: lifted, ringed dot, full-opacity accent */
-.hiw-step.active {
-    border-color: var(--stage-color, var(--color-accent));
-    box-shadow: var(--shadow-soft);
-    transform: translateY(-3px);
-}
-
-.hiw-step.active .step-dot {
-    opacity: 1;
-    box-shadow: 0 0 0 4px color-mix(in srgb, var(--stage-color) 22%, transparent);
-}
-
-/* Auto-advance bar under the strip. The fill is an animation, not a width
-   transition, so roadmap.js can restart it cleanly on every step. */
-.hiw-progress {
+.calc-shell {
     position: relative;
-    height: 3px;
-    margin-top: 14px;
-    border-radius: 999px;
-    background: rgba(18, 50, 67, 0.08);
-    overflow: hidden;
-}
-
-.hiw-progress span {
-    display: block;
-    width: 0;
-    height: 100%;
-    border-radius: inherit;
-    background: var(--stage-color, var(--color-accent));
-}
-
-.hiw-progress span.is-running {
-    animation: hiw-fill var(--hiw-duration, 3500ms) linear forwards;
-}
-
-.hiw-progress span.is-paused {
-    animation-play-state: paused;
-}
-
-/* Detail panel that follows the strip (roadmap.js writes into it) */
-.hiw-detail {
-    margin-top: 22px;
-    background: var(--color-surface);
-    border: 1px solid rgba(120, 184, 200, 0.35);
-    border-left: 4px solid var(--stage-color, var(--color-accent));
-    border-radius: var(--radius-md);
-    padding: 22px 26px;
-    display: grid;
-    grid-template-columns: auto 1fr;
-    gap: 20px;
-    align-items: start;
-}
-
-.hiw-detail .detail-icon {
-    display: grid;
-    place-items: center;
-    width: 52px;
-    height: 52px;
-    border-radius: 14px;
-    background: var(--color-pale);
-    color: var(--color-deep);
-}
-
-.hiw-detail h3 {
-    margin-bottom: 4px;
-}
-
-.hiw-detail p {
-    margin: 0;
-    font-size: 0.94rem;
 }
 
 /* ---------- 8. Full roadmap timeline (how-it-works page) ---------- */
@@ -710,7 +621,23 @@
     background: var(--color-surface);
     border: 2px solid rgba(120, 184, 200, 0.3);
     color: var(--color-muted);
+    /* Photo must never spill past the circular badge (portrait sources
+       would otherwise keep their natural aspect height as grid items). */
+    overflow: hidden;
     transition: border-color 0.5s ease, color 0.5s ease, transform 0.5s ease, box-shadow 0.5s ease;
+}
+
+/* Marker photo: fills the circular badge. Colour comes from the photo
+   itself; the border + halo carry the stage-colour state. Absolute
+   positioning pins it to the badge box, sidestepping the grid-item
+   min-size rule that lets portrait images overflow the circle. */
+.roadmap-marker img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
 }
 
 .roadmap-item.active .roadmap-marker {
@@ -768,103 +695,163 @@
 .roadmap-item[data-stage="5"] { --stage-color: var(--stage-5); }
 .roadmap-item[data-stage="6"] { --stage-color: var(--stage-6); }
 
-/* ---------- 9. Fabric cards (homepage) ---------- */
-.fabric-card {
+/* ---------- 9. Fabric flip cards (homepage) ----------
+   Tap/click to flip a card and reveal the care note on the back.
+   The flip is a true 3D rotateY on an inner wrapper. */
+.fabric-flip {
     position: relative;
-    border-radius: var(--radius-lg);
-    border: 1px solid rgba(18, 50, 67, 0.08);
-    background: var(--color-surface);
-    padding: 26px;
-    overflow: hidden;
+    height: 300px;
+    padding: 0;
+    border: 0;
+    background: none;
     cursor: pointer;
+    perspective: 1100px;
     text-align: left;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.fabric-flip .flip-inner {
+    position: relative;
+    display: block;
     width: 100%;
-    transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
+    height: 100%;
+    transform-style: preserve-3d;
+    transition: transform 0.65s cubic-bezier(0.22, 0.61, 0.36, 1);
 }
 
-.fabric-card:hover {
-    transform: translateY(-4px);
-    box-shadow: var(--shadow-soft);
-    border-color: rgba(120, 184, 200, 0.45);
+.fabric-flip.flipped .flip-inner {
+    transform: rotateY(180deg);
 }
 
-.fabric-card .fabric-head {
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    gap: 14px;
-    margin-bottom: 14px;
+.flip-face {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    align-content: end;
+    gap: 8px;
+    padding: 18px;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    border: 1px solid rgba(18, 50, 67, 0.08);
+    box-shadow: 0 18px 36px -20px rgba(18, 50, 67, 0.22);
 }
 
-.fabric-card .fabric-swatch {
-    width: 44px;
-    height: 44px;
-    border-radius: 12px;
-    flex-shrink: 0;
-    box-shadow: inset 0 0 0 1px rgba(18, 50, 67, 0.08);
-    transition: transform 0.35s ease;
+.flip-front {
+    background: var(--color-surface);
 }
 
-.fabric-card:hover .fabric-swatch,
-.fabric-card.active .fabric-swatch {
-    transform: rotate(-6deg) scale(1.05);
+.flip-front img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
 }
 
-.fabric-card h3 {
-    font-size: 1.1rem;
+/* Sky wash + legible name plate over each fibre photo. */
+.flip-front::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background: linear-gradient(180deg, rgba(228, 241, 245, 0.05) 30%, rgba(18, 50, 67, 0.72) 100%);
+}
+
+.flip-name {
+    position: relative;
+    z-index: 2;
+    justify-self: start;
+    font-size: 1.05rem;
+    font-weight: 800;
+    color: var(--color-surface);
+    background: rgba(18, 50, 67, 0.55);
+    backdrop-filter: blur(3px);
+    -webkit-backdrop-filter: blur(3px);
+    padding: 6px 14px;
+    border-radius: 999px;
+}
+
+.flip-back {
+    transform: rotateY(180deg);
+    background: linear-gradient(165deg, #eef7fa 0%, var(--color-pale) 100%);
+}
+
+.flip-back .flip-name {
+    color: var(--color-surface);
+    background: var(--color-deep);
+}
+
+.flip-back p {
     margin: 0;
+    font-size: 0.88rem;
+    color: var(--color-deep);
 }
 
-.fabric-card .fabric-body p {
-    font-size: 0.9rem;
-    margin-bottom: 10px;
-}
-
-.fabric-card .fabric-tags {
+.fabric-tags {
     display: flex;
     flex-wrap: wrap;
     gap: 6px;
 }
 
-.fabric-card .fabric-tags span {
+.fabric-tags span {
     font-size: 0.75rem;
     font-weight: 600;
     padding: 4px 10px;
     border-radius: 999px;
-    background: var(--color-pale);
+    background: rgba(255, 255, 255, 0.75);
     color: var(--color-deep);
 }
 
-.fabric-card .fabric-tip {
-    display: grid;
-    grid-template-rows: 0fr;
-    opacity: 0;
-    transition: grid-template-rows 0.45s ease, opacity 0.45s ease;
+.fabric-flip:hover .flip-inner,
+.fabric-flip:focus-visible .flip-inner {
+    transform: rotateY(180deg);
 }
 
-.fabric-card .fabric-tip > div {
-    overflow: hidden;
+.fabric-flip:focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 3px;
+    border-radius: var(--radius-lg);
 }
 
-.fabric-card.active .fabric-tip {
-    grid-template-rows: 1fr;
-    opacity: 1;
+/* No hover (touch): flip stays click-driven via cards.js. */
+@media (hover: none) {
+    .fabric-flip:hover .flip-inner {
+        transform: none;
+    }
 }
 
-.fabric-card .fabric-tip p {
-    margin: 12px 0 0;
-    padding-top: 12px;
-    border-top: 1px dashed rgba(18, 50, 67, 0.14);
-    font-size: 0.85rem;
-    color: var(--color-deep);
-    display: flex;
-    gap: 8px;
-}
+/* Reduced motion: no 3D flip; both faces stack so the care note is always
+   visible beneath the fibre photo. */
+@media (prefers-reduced-motion: reduce) {
+    .fabric-flip {
+        height: auto;
+        perspective: none;
+    }
 
-.fabric-card .fabric-tip svg {
-    flex-shrink: 0;
-    margin-top: 2px;
-    color: #58A795;
+    .fabric-flip .flip-inner {
+        transform: none !important;
+        transition: none;
+        display: grid;
+    }
+
+    .flip-face {
+        position: static;
+        backface-visibility: visible;
+        -webkit-backface-visibility: visible;
+    }
+
+    .flip-front {
+        height: 220px;
+    }
+
+    .flip-back {
+        transform: none;
+        border-top: 0;
+        border-radius: 0 0 var(--radius-lg) var(--radius-lg);
+    }
 }
 
 /* ---------- 10. Misc blocks ---------- */
